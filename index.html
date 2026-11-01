@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVCinema — O cinema inteiro em um só lugar</title>
+<meta name="description" content="Canais ao vivo, futebol, filmes e séries em 4K. Assista quando quiser, de onde estiver. Teste grátis por 7 dias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ Tokens ============ */
+:root{
+  --bg-0:#150304;
+  --bg-1:#200406;
+  --bg-2:#2b0508;
+  --card:#3a080c;
+  --card-2:#430a0d;
+  --line:rgba(255,214,196,.10);
+  --line-strong:rgba(255,214,196,.18);
+  --red:#d4232b;
+  --red-deep:#8f1418;
+  --amber:#f2b33d;
+  --amber-2:#ffd98a;
+  --ink:#fff6ee;
+  --text-2:#e9c4ba;
+  --text-3:#c99a90;
+  --ok:#5fbf77;
+  --radius:16px;
+  --radius-sm:12px;
+  --shadow-1:0 2px 10px rgba(0,0,0,.35);
+  --shadow-2:0 18px 50px -12px rgba(0,0,0,.55);
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --font:'Plus Jakarta Sans',-apple-system,'PingFang SC','Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:
+    radial-gradient(1100px 600px at 85% -5%, rgba(143,20,24,.35), transparent 60%),
+    radial-gradient(900px 700px at -10% 30%, rgba(90,8,12,.40), transparent 55%),
+    linear-gradient(180deg,var(--bg-0) 0%,var(--bg-1) 45%,var(--bg-0) 100%);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--red);color:#fff}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.container{width:min(1180px,92%);margin-inline:auto}
+section{padding:96px 0}
+h1,h2,h3{text-wrap:balance;text-wrap:pretty}
+p{text-wrap:pretty}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber-2);background:rgba(242,179,61,.10);
+  border:1px solid rgba(242,179,61,.28);
+  padding:7px 14px;border-radius:999px;
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;margin:16px 0 12px}
+.sec-head p{color:var(--text-2);font-size:16.5px}
+.center{margin-inline:auto;text-align:center}
+.center .sec-head{margin-inline:auto}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+
+/* ============ Buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font:inherit;font-weight:700;font-size:15.5px;padding:14px 26px;border-radius:999px;
+  border:none;cursor:pointer;color:inherit;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;
+  white-space:nowrap;
+}
+.btn-amber{
+  background:linear-gradient(135deg,var(--amber) 0%,#e89a1f 100%);
+  color:#2a1200;
+  box-shadow:0 10px 30px -8px rgba(242,179,61,.45);
+}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 16px 38px -8px rgba(242,179,61,.55)}
+.btn-red{
+  background:linear-gradient(135deg,#e33135 0%,var(--red-deep) 100%);
+  color:#fff;box-shadow:0 10px 30px -8px rgba(212,35,43,.45);
+}
+.btn-red:hover{transform:translateY(-2px)}
+.btn-ghost{
+  border:1px solid var(--line-strong);color:var(--ink);background:rgba(255,255,255,.03);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.07);transform:translateY(-2px)}
+.btn-sm{padding:10px 20px;font-size:14px}
+
+/* ============ Header ============ */
+header{
+  position:fixed;inset:0 0 auto;z-index:100;
+  transition:background .3s,box-shadow .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(21,3,4,.82);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom-color:var(--line);
+  box-shadow:0 10px 40px -18px rgba(0,0,0,.6);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,#e33135,#8f1418);
+  display:grid;place-items:center;
+  box-shadow:0 6px 18px -4px rgba(212,35,43,.5), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.brand-name{font-weight:800;font-size:19px;letter-spacing:-.01em}
+.brand-name span{color:var(--amber)}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:9px 14px;border-radius:999px;font-size:14.5px;font-weight:600;color:var(--text-2);
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:rgba(255,255,255,.06)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+/* language switch */
+.lang-switch{
+  display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;
+  border:1px solid var(--line-strong);background:rgba(0,0,0,.28);
+}
+.lang-switch button{
+  padding:5px 11px;border-radius:999px;font-size:11.5px;font-weight:800;
+  letter-spacing:.08em;color:var(--text-3);transition:.22s var(--ease);line-height:1.4;
+}
+.lang-switch button:hover{color:var(--ink)}
+.lang-switch button.on{
+  background:linear-gradient(135deg,var(--amber),#e89a1f);color:#2a1200;
+  box-shadow:0 4px 14px -4px rgba(242,179,61,.55);
+}
+.lang-switch button.on:hover{color:#2a1200}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:10px}
+.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s var(--ease)}
+.mobile-menu{
+  display:none;position:fixed;top:74px;left:0;right:0;z-index:99;
+  background:rgba(21,3,4,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);padding:18px 5% 26px;
+}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:13px 6px;font-weight:600;border-bottom:1px solid var(--line)}
+.mobile-menu .btn{width:100%;margin-top:16px}
+
+/* ============ Hero ============ */
+.hero{position:relative;padding:170px 0 90px;overflow:hidden}
+.hero::before{ /* diagonal texture echoing app background */
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 90px, rgba(255,120,90,.05) 90px 92px),
+    repeating-linear-gradient(-115deg, transparent 0 120px, rgba(255,120,90,.04) 120px 122px);
+  mask-image:radial-gradient(80% 70% at 60% 30%, #000 30%, transparent 100%);
+}
+.hero-glow{
+  position:absolute;width:760px;height:760px;border-radius:50%;filter:blur(90px);
+  background:radial-gradient(circle,rgba(212,35,43,.28),transparent 65%);
+  top:-220px;right:-160px;pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero-grid>*{min-width:0}
+.tv-wrap{min-width:0}
+.hero h1{
+  font-size:clamp(38px,5.2vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.08;
+  margin:22px 0 20px;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(120deg,var(--amber) 10%,#ff7a45 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .lead{color:var(--text-2);font-size:clamp(16px,1.6vw,18.5px);max-width:520px;margin-bottom:32px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stats{display:flex;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.02);max-width:520px}
+.hero-stats .stat{flex:1;padding:16px 10px;text-align:center;border-right:1px solid var(--line)}
+.hero-stats .stat:last-child{border-right:none}
+.stat b{display:block;font-size:clamp(18px,2vw,24px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.stat b em{font-style:normal;color:var(--amber)}
+.stat span{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+
+/* TV mockup */
+.tv-wrap{position:relative;perspective:1400px}
+.tv{
+  border-radius:18px;background:linear-gradient(180deg,#2c0509,#1b0304);
+  border:1px solid rgba(255,190,160,.16);
+  box-shadow:0 40px 90px -20px rgba(0,0,0,.7), 0 0 0 8px rgba(20,2,3,.9), 0 0 0 9px rgba(255,120,90,.12);
+  padding:10px;transform:rotateY(-7deg) rotateX(2deg);
+  transition:transform .6s var(--ease);
+}
+.tv:hover{transform:rotateY(-3deg) rotateX(1deg)}
+.tv-screen{border-radius:10px;overflow:hidden;background:linear-gradient(160deg,#40090c,#240406);position:relative}
+.tv-topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(0,0,0,.25)}
+.tv-topbar .b{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px}
+.tv-topbar .time{font-weight:700;font-size:13px;color:var(--text-2)}
+.mini-logo{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#e33135,#8f1418);display:grid;place-items:center}
+.mini-nav{display:flex;gap:14px;padding:12px 16px 4px;align-items:center}
+.mini-nav span{font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--text-3)}
+.mini-nav span.on{
+  color:var(--amber);border:1.6px solid var(--amber);
+  padding:4px 13px;border-radius:999px;background:rgba(242,179,61,.07);
+}
+.mini-rows{padding:10px 14px 16px;display:flex;flex-direction:column;gap:8px}
+.mini-row{
+  display:grid;grid-template-columns:88px 1fr 62px 58px 1fr 34px;align-items:center;gap:8px;
+  background:rgba(120,20,24,.32);border:1px solid rgba(255,150,120,.10);
+  border-radius:9px;padding:9px 12px;font-size:11.5px;font-weight:600;
+}
+.mini-row .lg{color:var(--text-3);font-size:10px;letter-spacing:.03em}
+.mini-row .t{color:var(--ink)}
+.mini-row .tm{text-align:center}
+.mini-row .tm b{display:block;font-size:14px;color:#fff}
+.mini-row .tm span{font-size:9.5px;color:var(--text-3)}
+.badge-live{
+  position:absolute;top:-14px;left:-14px;z-index:3;
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,#e33135,#a01518);color:#fff;
+  font-size:12px;font-weight:800;letter-spacing:.08em;
+  padding:9px 16px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(227,49,53,.6);
+}
+.badge-live i{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+.chip-kids{
+  position:absolute;bottom:-16px;right:-10px;z-index:3;
+  background:rgba(21,3,4,.9);border:1px solid var(--line-strong);
+  padding:10px 18px;border-radius:999px;font-weight:800;font-size:12.5px;letter-spacing:.06em;
+  background-clip:padding-box;
+}
+.chip-kids span{
+  background:linear-gradient(90deg,#ff5f6d,#ffc371,#7ee8fa,#a78bfa,#f472b6);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.float-card{
+  position:absolute;z-index:3;background:rgba(32,4,6,.92);border:1px solid var(--line-strong);
+  border-radius:14px;padding:12px 16px;box-shadow:var(--shadow-2);backdrop-filter:blur(8px);
+  animation:floaty 5.5s ease-in-out infinite;
+}
+.float-card .fc-t{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--text-3);text-transform:uppercase}
+.float-card .fc-v{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px}
+.float-card .fc-v i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.fc-1{top:38%;left:-46px}
+.fc-2{bottom:18%;right:-40px;animation-delay:-2.7s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.tv-stand{width:180px;height:14px;margin:2px auto 0;border-radius:0 0 14px 14px;background:linear-gradient(180deg,#240406,#160304)}
+
+/* ============ Marquee ============ */
+.marquee{
+  border-block:1px solid var(--line);padding:20px 0;overflow:hidden;
+  background:rgba(0,0,0,.22);position:relative;
+}
+.marquee::before,.marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none;
+}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg-0),transparent)}
+.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg-0),transparent)}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:scroll 26s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.mq-item{display:flex;align-items:center;gap:56px;font-weight:800;letter-spacing:.18em;font-size:15px;color:var(--text-3)}
+.mq-item b{color:var(--ink);transition:color .3s}
+.mq-item b:hover{color:var(--amber)}
+.mq-item .sep{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red)}
+
+/* ============ Features ============ */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{
+  position:relative;padding:30px 28px;border-radius:var(--radius);
+  background:linear-gradient(165deg,var(--card) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);overflow:hidden;
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;
+}
+.feat:hover{transform:translateY(-6px);border-color:rgba(242,179,61,.35);box-shadow:var(--shadow-2)}
+.feat::after{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;
+  background:radial-gradient(320px 160px at 20% 0%,rgba(242,179,61,.10),transparent 70%);
+}
+.feat:hover::after{opacity:1}
+.feat-ic{
+  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:20px;
+  background:linear-gradient(135deg,rgba(227,49,53,.25),rgba(143,20,24,.25));
+  border:1px solid rgba(227,49,53,.35);
+}
+.feat-ic.amber{background:linear-gradient(135deg,rgba(242,179,61,.22),rgba(232,154,31,.15));border-color:rgba(242,179,61,.4)}
+.feat h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.feat p{color:var(--text-2);font-size:14.5px}
+.feat .tag{
+  position:absolute;top:22px;right:22px;font-size:10.5px;font-weight:800;letter-spacing:.1em;
+  color:var(--amber);border:1px solid rgba(242,179,61,.35);padding:4px 10px;border-radius:999px;
+}
+
+/* ============ Catálogo (tabs) ============ */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:38px}
+.tab{
+  padding:10px 22px;border-radius:999px;font-weight:700;font-size:14px;color:var(--text-2);
+  border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.25s var(--ease);
+}
+.tab:hover{color:var(--ink);border-color:var(--line-strong)}
+.tab.on{background:linear-gradient(135deg,var(--amber),#e89a1f);color:#2a1200;border-color:transparent;box-shadow:0 8px 24px -8px rgba(242,179,61,.5)}
+.poster-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.poster{
+  position:relative;border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:2/3;
+  border:1px solid var(--line);cursor:pointer;
+  transition:transform .35s var(--ease),box-shadow .35s;
+}
+.poster:hover{transform:translateY(-8px) scale(1.02);box-shadow:var(--shadow-2)}
+.poster .art{position:absolute;inset:0;display:grid;place-items:center}
+.poster .art b{
+  font-size:64px;font-weight:800;opacity:.9;
+  text-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+.poster .art img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s var(--ease);
+}
+.poster:hover .art img{transform:scale(1.07)}
+.poster .meta{
+  position:absolute;inset:auto 0 0;padding:44px 14px 13px;
+  background:linear-gradient(transparent,rgba(10,1,2,.92));
+}
+.poster .meta b{display:block;font-size:13.5px;font-weight:800;line-height:1.3}
+.poster .meta span{font-size:11px;color:var(--text-2);display:flex;align-items:center;gap:6px;margin-top:3px}
+.poster .meta .star{color:var(--amber)}
+.poster .q{
+  position:absolute;top:10px;left:10px;z-index:2;font-size:9.5px;font-weight:800;letter-spacing:.08em;
+  background:rgba(0,0,0,.55);border:1px solid var(--line-strong);padding:3px 8px;border-radius:6px;
+  backdrop-filter:blur(4px);
+}
+.a1{background:linear-gradient(150deg,#7f1024,#2b0510 70%)}
+.a2{background:linear-gradient(150deg,#b3541e,#3a0d10 75%)}
+.a3{background:linear-gradient(150deg,#1e3a5f,#12060e 80%)}
+.a4{background:linear-gradient(150deg,#4a1140,#1c050d 75%)}
+.a5{background:linear-gradient(150deg,#6d1a1a,#1f0407 78%)}
+.a6{background:linear-gradient(150deg,#0f5147,#0e060e 80%)}
+.a7{background:linear-gradient(150deg,#8a6d1f,#2a0810 78%)}
+.a8{background:linear-gradient(150deg,#571e6e,#180512 80%)}
+.a9{background:linear-gradient(150deg,#b02323,#260408 78%)}
+.a10{background:linear-gradient(150deg,#25516d,#14050d 80%)}
+.tab-panel{display:none;animation:fadeUp .45s var(--ease)}
+.tab-panel.on{display:grid}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============ Planos ============ */
+#planos{position:relative}
+.plans-toggle{
+  display:inline-flex;background:rgba(0,0,0,.3);border:1px solid var(--line);
+  border-radius:999px;padding:5px;gap:4px;margin:0 auto 46px;
+}
+.pt{
+  padding:9px 24px;border-radius:999px;font-weight:700;font-size:14px;color:var(--text-2);
+  transition:.25s var(--ease);
+}
+.pt.on{background:linear-gradient(135deg,#e33135,#8f1418);color:#fff;box-shadow:0 6px 18px -6px rgba(212,35,43,.5)}
+.pt .save{font-size:10.5px;font-weight:800;color:var(--amber-2);margin-left:5px}
+.pt.on .save{color:#ffe6ad}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{
+  position:relative;padding:36px 30px;border-radius:20px;
+  background:linear-gradient(170deg,var(--card) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);display:flex;flex-direction:column;
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;
+}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}
+.plan.best{
+  border:1.5px solid rgba(242,179,61,.55);
+  background:linear-gradient(170deg,#4a0b0e 0%,#2b0508 100%);
+  box-shadow:0 30px 70px -20px rgba(0,0,0,.6),0 0 60px -18px rgba(242,179,61,.28);
+}
+.plan-flag{
+  position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--amber),#e89a1f);color:#2a1200;
+  font-size:11.5px;font-weight:800;letter-spacing:.06em;padding:7px 18px;border-radius:999px;
+  box-shadow:0 10px 26px -8px rgba(242,179,61,.55);white-space:nowrap;
+}
+.plan .p-name{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
+.plan .p-price{display:flex;align-items:baseline;gap:8px;margin:16px 0 4px}
+.plan .p-price b{font-size:44px;font-weight:800;letter-spacing:-.03em}
+.plan .p-price span{color:var(--text-3);font-size:14px;font-weight:600}
+.plan .p-total{font-size:12.5px;color:var(--text-3);margin-bottom:22px}
+.plan .p-days{
+  display:inline-flex;align-self:flex-start;align-items:center;gap:8px;
+  font-size:12.5px;font-weight:700;color:var(--amber-2);
+  background:rgba(242,179,61,.10);border:1px solid rgba(242,179,61,.3);
+  padding:6px 13px;border-radius:999px;margin-bottom:22px;
+}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:30px}
+.plan li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2)}
+.plan li svg{flex:none;margin-top:3px}
+.plan .btn{margin-top:auto;width:100%}
+.promo-note{
+  display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
+  margin-top:30px;color:var(--text-3);font-size:13.5px;
+}
+.promo-note b{color:var(--amber-2)}
+
+/* ============ Trial / CTA banner ============ */
+.banner{
+  position:relative;border-radius:24px;overflow:hidden;padding:64px 56px;
+  background:
+    radial-gradient(600px 300px at 85% 0%,rgba(242,179,61,.16),transparent 60%),
+    linear-gradient(120deg,#4a0b0e,#26050a 70%);
+  border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;
+}
+.banner::before{
+  content:'';position:absolute;inset:0;opacity:.4;
+  background:repeating-linear-gradient(115deg,transparent 0 70px,rgba(255,140,100,.06) 70px 72px);
+}
+.banner h2{font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.banner p{color:var(--text-2);max-width:480px}
+.banner .btns{display:flex;gap:14px;flex-wrap:wrap;position:relative}
+.banner>*{position:relative}
+
+/* ============ Dispositivos ============ */
+.dev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.dev{
+  text-align:center;padding:36px 22px;border-radius:var(--radius);
+  background:rgba(255,255,255,.025);border:1px solid var(--line);
+  transition:transform .35s var(--ease),border-color .35s,background .35s;
+}
+.dev:hover{transform:translateY(-6px);border-color:rgba(227,49,53,.4);background:rgba(227,49,53,.06)}
+.dev-ic{
+  width:64px;height:64px;margin:0 auto 18px;border-radius:18px;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(227,49,53,.2),rgba(143,20,24,.2));
+  border:1px solid rgba(227,49,53,.3);
+}
+.dev h3{font-size:16.5px;font-weight:800;margin-bottom:6px}
+.dev p{font-size:13.5px;color:var(--text-2);margin-bottom:18px}
+
+/* ============ Depoimentos ============ */
+.tst-wrap{position:relative;max-width:860px;margin-inline:auto}
+.tst-track{overflow:hidden;border-radius:var(--radius)}
+.tst-inner{display:flex;transition:transform .55s var(--ease)}
+.tst{
+  flex:0 0 100%;padding:44px 48px;text-align:center;
+  background:linear-gradient(170deg,var(--card) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);border-radius:var(--radius);
+}
+.stars{display:flex;gap:5px;justify-content:center;margin-bottom:20px;color:var(--amber)}
+.tst q{
+  display:block;font-size:clamp(16px,1.9vw,20px);font-weight:600;line-height:1.55;
+  quotes:'“' '”';margin-bottom:24px;color:var(--ink);
+}
+.tst .who b{display:block;font-weight:800;font-size:15px}
+.tst .who span{font-size:13px;color:var(--text-3)}
+.avatar{
+  width:52px;height:52px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;
+  font-weight:800;font-size:18px;color:#fff;
+  background:linear-gradient(135deg,#e33135,#6e0f13);
+  border:2px solid rgba(242,179,61,.5);
+}
+.dots{display:flex;gap:9px;justify-content:center;margin-top:26px}
+.dot-b{width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,.2);transition:.3s var(--ease)}
+.dot-b.on{width:26px;background:var(--amber)}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:12px}
+.faq{
+  border:1px solid var(--line);border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.02);overflow:hidden;transition:border-color .3s;
+}
+.faq.open{border-color:rgba(242,179,61,.4)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 24px;font-weight:700;font-size:15.5px;text-align:left;color:var(--ink);
+}
+.faq-q .ic{
+  flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line-strong);transition:.3s var(--ease);color:var(--amber);
+}
+.faq.open .faq-q .ic{transform:rotate(45deg);background:rgba(242,179,61,.15)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-a p{padding:0 24px 22px;color:var(--text-2);font-size:14.5px}
+
+/* ============ Footer ============ */
+footer{border-top:1px solid var(--line);background:rgba(0,0,0,.28);padding:64px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.foot-brand p{color:var(--text-2);font-size:14px;margin-top:14px;max-width:300px}
+.socials{display:flex;gap:10px;margin-top:20px}
+.soc{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.25s var(--ease);
+}
+.soc:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px)}
+.foot-col h4{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:18px}
+.foot-col a{display:block;padding:6px 0;color:var(--text-2);font-size:14px;transition:color .2s}
+.foot-col a:hover{color:var(--amber-2)}
+.foot-bottom{
+  border-top:1px solid var(--line);padding-top:24px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  color:var(--text-3);font-size:13px;
+}
+.tg-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid rgba(126,232,250,.3);background:rgba(126,232,250,.06);
+  color:#bdeef7;padding:9px 18px;border-radius:999px;font-weight:700;font-size:13.5px;
+  transition:.25s var(--ease);
+}
+.tg-pill:hover{border-color:#7ee8fa;transform:translateY(-2px)}
+
+/* ============ Modal ============ */
+.modal-mask{
+  position:fixed;inset:0;z-index:200;background:rgba(10,1,2,.72);
+  backdrop-filter:blur(8px);display:none;place-items:center;padding:20px;
+}
+.modal-mask.open{display:grid}
+.modal{
+  width:min(420px,100%);border-radius:22px;padding:38px 34px;
+  background:linear-gradient(170deg,#3f090d,#240407);
+  border:1px solid var(--line-strong);box-shadow:var(--shadow-2);
+  animation:fadeUp .35s var(--ease);position:relative;
+}
+.modal h3{font-size:22px;font-weight:800;margin-bottom:6px}
+.modal>p{color:var(--text-2);font-size:14px;margin-bottom:24px}
+.modal .close{
+  position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;border:1px solid var(--line);color:var(--text-2);
+}
+.modal .close:hover{color:var(--ink);border-color:var(--line-strong)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12.5px;font-weight:700;color:var(--text-3);margin-bottom:7px}
+.field input{
+  width:100%;padding:13px 16px;border-radius:12px;font:inherit;font-size:14.5px;
+  background:rgba(0,0,0,.3);border:1px solid var(--line-strong);color:var(--ink);
+  transition:border-color .2s,box-shadow .2s;
+}
+.field input:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,179,61,.15)}
+.modal .btn{width:100%;margin-top:8px}
+.modal .alt{text-align:center;font-size:13px;color:var(--text-3);margin-top:18px}
+.modal .alt a{color:var(--amber-2);font-weight:700}
+
+/* ============ Checkout ============ */
+.ck-mask{position:fixed;inset:0;z-index:300;background:rgba(8,1,2,.88);backdrop-filter:blur(10px);display:none;overflow:auto}
+.ck-mask.open{display:block}
+.ck-wrap{max-width:1120px;margin:0 auto;padding:20px 24px 70px}
+.ck-top{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:12px 0 22px;position:sticky;top:0;z-index:5;
+  background:linear-gradient(180deg,var(--bg-0) 62%,transparent);
+}
+.ck-steps{display:flex;align-items:center;list-style:none;margin:0;padding:0;gap:4px}
+.ck-steps li{display:flex;align-items:center;gap:9px;color:var(--text-3);font-size:14px;font-weight:600;white-space:nowrap}
+.ck-steps li+li::before{content:'›';margin:0 10px;color:var(--text-3);font-size:17px;font-weight:400}
+.ck-steps li span{
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;
+  border:1px solid var(--line-strong);color:var(--text-2);flex:none;
+}
+.ck-steps li.on{color:var(--amber)}
+.ck-steps li.on span{background:var(--amber);border-color:var(--amber);color:#2b0607;font-weight:800}
+.ck-steps li.done{color:var(--ink)}
+.ck-steps li.done span{border-color:var(--amber);color:var(--amber)}
+.ck-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;align-items:start}
+.ck-card{
+  background:linear-gradient(170deg,#2c0608,#1c0304);border:1px solid var(--line-strong);
+  border-radius:20px;padding:30px 30px 34px;
+}
+.ck-card h2{font-size:20px;font-weight:800;margin-bottom:22px}
+.ck-step{display:none;padding:0}
+.ck-step.on{display:block;animation:fadeUp .3s var(--ease)}
+.ck-back{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;
+  border:1px solid var(--line-strong);color:var(--text-2);cursor:pointer;background:rgba(0,0,0,.25);
+}
+.ck-back:hover{color:var(--ink);border-color:var(--amber)}
+.ck-card select{
+  width:100%;padding:13px 16px;border-radius:12px;font:inherit;font-size:14.5px;
+  background:rgba(0,0,0,.3);border:1px solid var(--line-strong);color:var(--ink);cursor:pointer;
+}
+.ck-card select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,179,61,.15)}
+.pm-row{display:flex;gap:12px;flex-wrap:wrap}
+.pm{
+  display:flex;align-items:center;gap:10px;padding:13px 18px;cursor:pointer;
+  border:1px solid var(--line-strong);border-radius:12px;background:rgba(0,0,0,.3);
+  font-size:13px;font-weight:800;letter-spacing:.05em;transition:border-color .2s,box-shadow .2s;
+}
+.pm input{accent-color:var(--amber);width:15px;height:15px}
+.pm.on{border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,179,61,.15)}
+.pm-brand{
+  margin-top:14px;display:inline-flex;align-items:center;gap:9px;padding:10px 16px;
+  border:1px solid var(--amber);border-radius:12px;background:#fff;
+}
+.pm-brand b{color:#1a1a1a;font-size:15px;letter-spacing:-.02em}
+.ck-cta{width:100%;margin-top:26px}
+.ck-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.ck-form-grid .field{grid-column:span 1}
+.ck-form-grid .full{grid-column:1/-1}
+.radio-inline{
+  display:flex;align-items:center;gap:18px;padding:12.5px 16px;border-radius:12px;
+  border:1px solid var(--line-strong);background:rgba(0,0,0,.3);flex-wrap:wrap;
+}
+.radio-inline label{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--text-2)}
+.radio-inline input{accent-color:var(--amber);width:14px;height:14px}
+.phone-row{display:grid;grid-template-columns:120px 1fr;gap:12px}
+.ck-side{position:sticky;top:98px}
+.ck-summary{
+  background:linear-gradient(170deg,#2c0608,#1c0304);border:1px solid var(--line-strong);
+  border-radius:20px;padding:26px 26px 28px;
+}
+.ck-summary h3{font-size:20px;font-weight:800}
+.ck-sub{color:var(--text-3);font-size:13px;margin:4px 0 18px}
+.ck-summary dl{margin:0}
+.ck-summary dl>div[hidden]{display:none}
+.ck-summary dl>div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;font-size:14px;color:var(--text-2)}
+.ck-summary dt{margin:0}
+.ck-summary dt em{font-style:normal;color:var(--text-3)}
+.ck-summary dd{margin:0;font-variant-numeric:tabular-nums}
+.ck-summary .neg{color:#5fbf77}
+.ck-summary .tot{border-top:1px solid var(--line-strong);margin-top:8px;padding-top:15px;font-size:15px;color:var(--ink);font-weight:700}
+.ck-summary .tot dd{color:var(--amber);font-weight:800;font-size:21px}
+.ck-note{font-size:12.5px;color:var(--text-3);margin-top:10px}
+.ck-coupon{display:flex;gap:10px;margin-top:18px}
+.ck-coupon input{
+  flex:1;min-width:0;padding:11px 14px;border-radius:11px;font:inherit;font-size:13.5px;
+  background:rgba(0,0,0,.3);border:1px solid var(--line-strong);color:var(--ink);
+}
+.ck-coupon input:focus{outline:none;border-color:var(--amber)}
+.ck-coupon .btn{padding:11px 16px;font-size:13px}
+.ck-msg{font-size:12.5px;margin-top:10px;min-height:17px}
+.ck-msg.ok{color:#5fbf77}.ck-msg.err{color:#ff8d7a}
+.ck-done{text-align:center;padding:60px 20px}
+.ck-done .big-check{
+  width:76px;height:76px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;
+  background:rgba(95,191,119,.12);border:1px solid #5fbf77;
+}
+.ck-done h2{font-size:24px;font-weight:800;margin-bottom:10px}
+.ck-done p{color:var(--text-2);font-size:14.5px;max-width:420px;margin:0 auto 28px}
+@media (max-width:640px){
+  .ck-wrap{padding:14px 16px 50px}
+  .ck-top{padding:10px 0 16px}
+  .ck-close-btn{position:absolute;top:16px;right:16px}
+  .ck-steps li{font-size:11.5px}
+  .ck-steps li span{width:19px;height:19px;font-size:10.5px}
+  .ck-steps li+li::before{margin:0 5px}
+  .ck-card{padding:22px 20px 26px}
+  .ck-summary{padding:22px 20px 24px}
+}
+@media (max-width:920px){
+  .ck-grid{grid-template-columns:1fr}
+  .ck-side{position:static;order:-1}
+  .ck-steps li{font-size:12.5px}
+  .ck-steps li+li::before{margin:0 6px}
+  .ck-form-grid{grid-template-columns:1fr}
+  .phone-row{grid-template-columns:1fr}
+  .ck-top{flex-wrap:wrap}
+}
+
+.ck-close-btn{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
+  border:1px solid var(--line-strong);color:var(--text-2);cursor:pointer;background:rgba(0,0,0,.3);
+}
+.ck-close-btn:hover{color:var(--ink);border-color:var(--amber)}
+
+/* ============ Reveal ============ */
+html.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+html.js .reveal.in{opacity:1;transform:none}
+html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ============ Responsive ============ */
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:70px}
+  .hero{padding-top:140px}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .poster-grid{grid-template-columns:repeat(4,1fr)}
+  .plans{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+  .plan.best{order:-1}
+  .dev-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+@media (max-width:640px){
+  section{padding:70px 0}
+  .nav-cta{gap:8px}
+  .nav-cta .btn-ghost[data-login]{display:none}
+  .lang-switch button{padding:5px 8px;font-size:11px}
+  .nav-cta .btn-red{padding:10px 16px;font-size:13.5px}
+  .plans-toggle{max-width:100%}
+  .pt{padding:9px 14px;font-size:13px}
+  .pt .save{margin-left:3px}
+  .feat-grid{grid-template-columns:1fr}
+  .poster-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .dev-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .banner{padding:44px 26px}
+  .tst{padding:34px 22px}
+  .hero-stats{flex-wrap:wrap}
+  .hero-stats .stat{flex:1 1 45%;border-bottom:1px solid var(--line)}
+  .fc-1{left:-8px}.fc-2{right:-8px}
+  .foot-grid{grid-template-columns:1fr}
+  .float-card{display:none}
+}
+@media (max-width:440px){
+  .nav-cta .btn-red{display:none}
+  .brand-name{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="header">
+  <div class="container nav">
+    <a class="brand" href="#inicio" aria-label="TVCinema — início">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#fff"/></svg>
+      </span>
+      <span class="brand-name">TV<span>Cinema</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#inicio" class="active">Início</a>
+      <a href="#planos">Planos</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#dispositivos">Download</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="btn btn-ghost btn-sm" data-login>Entrar</button>
+      <a class="btn btn-red btn-sm" href="#planos">Assinar</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio">Início</a>
+  <a href="#planos">Planos</a>
+  <a href="#recursos">Recursos</a>
+  <a href="#catalogo">Catálogo</a>
+  <a href="#dispositivos">Download</a>
+  <a href="#faq">FAQ</a>
+  <button class="btn btn-amber" data-login>Entrar na minha conta</button>
+  <div class="lang-switch" role="group" aria-label="Idioma / Language" style="margin-top:16px">
+    <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Canais, filmes e jogos ao vivo</span>
+      <h1>O cinema inteiro<br>em <em>um só lugar</em>.</h1>
+      <p class="lead">Com a TVCinema você acompanha os principais jogos brasileiros e o melhor do futebol mundial, além dos seus canais, filmes e séries favoritos. Assista quando quiser, de onde estiver.</p>
+      <div class="hero-actions">
+        <a class="btn btn-amber" href="#planos">
+          Assinar agora
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#teste">Testar 7 dias grátis</a>
+      </div>
+      <div class="hero-stats" role="list">
+        <div class="stat" role="listitem"><b><em data-count="1000">0</em>+</b><span>Canais</span></div>
+        <div class="stat" role="listitem"><b><em data-count="5000">0</em>+</b><span>Filmes &amp; séries</span></div>
+        <div class="stat" role="listitem"><b>4K <em>HDR</em></b><span>Qualidade</span></div>
+        <div class="stat" role="listitem"><b>7 dias</b><span>Grátis</span></div>
+      </div>
+    </div>
+
+    <div class="tv-wrap">
+      <span class="badge-live"><i></i>AO VIVO</span>
+      <div class="float-card fc-1">
+        <span class="fc-t">Jogos hoje</span>
+        <span class="fc-v"><i></i>18 partidas</span>
+      </div>
+      <div class="float-card fc-2">
+        <span class="fc-t">Qualidade</span>
+        <span class="fc-v"><i></i>4K HDR estável</span>
+      </div>
+      <div class="tv" role="img" aria-label="Prévia da interface TVCinema na TV, com a lista de partidas de hoje">
+        <div class="tv-screen">
+          <div class="tv-topbar">
+            <span class="b"><span class="mini-logo"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#fff"/></svg></span>TVCinema</span>
+            <span class="time">20:00</span>
+          </div>
+          <div class="mini-nav">
+            <span>LIVE</span><span class="on">MATCH</span><span>MOVIE</span><span>SERIES</span>
+          </div>
+          <div class="mini-rows">
+            <div class="mini-row"><span class="lg">Brasileirão Série&nbsp;B</span><span class="t">Ceará</span><span class="tm"><b>20:00</b><span>hoje</span></span><span></span><span class="t">Goiás</span><span>🔔</span></div>
+            <div class="mini-row"><span class="lg">Ligue&nbsp;1</span><span class="t">Le Havre</span><span class="tm"><b>15:00</b><span>30/10</span></span><span></span><span class="t">PSG</span><span>🔔</span></div>
+            <div class="mini-row"><span class="lg">LaLiga</span><span class="t">Villarreal</span><span class="tm"><b>17:00</b><span>30/10</span></span><span></span><span class="t">Espanyol</span><span>🔔</span></div>
+          </div>
+        </div>
+        <div class="tv-stand"></div>
+      </div>
+      <span class="chip-kids"><span>KIDS</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="mq-item"><b>LIVE</b><span class="sep"></span><b>MATCH</b><span class="sep"></span><b>FEATURED</b><span class="sep"></span><b>MOVIE</b><span class="sep"></span><b>SERIES</b><span class="sep"></span><b>KIDS</b><span class="sep"></span></div>
+    <div class="mq-item"><b>LIVE</b><span class="sep"></span><b>MATCH</b><span class="sep"></span><b>FEATURED</b><span class="sep"></span><b>MOVIE</b><span class="sep"></span><b>SERIES</b><span class="sep"></span><b>KIDS</b><span class="sep"></span></div>
+  </div>
+</div>
+
+<!-- ================= PLANOS ================= -->
+<section id="planos">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Planos disponíveis</span>
+      <h2>A emoção do cinema começa aqui</h2>
+      <p>Assine a TVCinema e transforme sua casa em uma experiência completa de entretenimento — em um único passo, sem complicações.</p>
+    </div>
+    <div class="center reveal" style="text-align:center">
+      <div class="plans-toggle" role="tablist" aria-label="Ciclo de cobrança">
+        <button class="pt" data-cycle="m">Mensal</button>
+        <button class="pt on" data-cycle="t">Trimestral<span class="save">-27%</span></button>
+        <button class="pt" data-cycle="a">Anual<span class="save">-50%</span></button>
+      </div>
+    </div>
+    <div class="plans">
+      <article class="plan reveal" data-plan="ess">
+        <span class="p-name">Essencial</span>
+        <div class="p-price"><b>R$ 14,53</b><span>/mês</span></div>
+        <span class="p-total">cobrança trimestral de R$ 43,59</span>
+        <span class="p-days">⏱ 3 meses de acesso</span>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Canais ao vivo + catálogo completo</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte 7 dias por semana</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Acesso mobile</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>1 tela simultânea</li>
+        </ul>
+        <button class="btn btn-ghost" type="button" data-checkout="ess">Escolher plano</button>
+      </article>
+
+      <article class="plan best reveal d1" data-plan="cin">
+        <span class="plan-flag">Melhor custo-benefício</span>
+        <span class="p-name">Cinema+</span>
+        <div class="p-price"><b>R$ 21,83</b><span>/mês</span></div>
+        <span class="p-total" data-total="a">cobrança trimestral de R$ 65,49</span>
+        <span class="p-days">⏱ 3 meses de acesso</span>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tudo do Essencial</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Qualidade 4K HDR</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>2 telas simultâneas</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Perfil KIDS com controle parental</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte prioritário no Telegram</li>
+        </ul>
+        <button class="btn btn-amber" type="button" data-checkout="cin">Escolher plano</button>
+      </article>
+
+      <article class="plan reveal d2" data-plan="fam">
+        <span class="p-name">Família</span>
+        <div class="p-price"><b>R$ 29,13</b><span>/mês</span></div>
+        <span class="p-total" data-total="t">cobrança trimestral de R$ 87,39</span>
+        <span class="p-days">⏱ 3 meses de acesso</span>
+        <ul>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tudo do Cinema+</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Qualidade 4K HDR</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>4 telas simultâneas</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Perfil KIDS com controle parental</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte prioritário no Telegram</li>
+        </ul>
+        <button class="btn btn-ghost" type="button" data-checkout="fam">Escolher plano</button>
+      </article>
+    </div>
+    <p class="promo-note reveal">💳 Pix, cartão de crédito e boleto · 🔒 Pagamento seguro · <b>Edição de lançamento: primeiros 7 dias grátis em qualquer plano</b></p>
+  </div>
+</section>
+
+<!-- ================= RECURSOS ================= -->
+<section id="recursos">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Recursos</span>
+      <h2>Tudo o que você precisa em um só lugar</h2>
+      <p>Uma plataforma completa dedicada à TV ao vivo, esportes, filmes e séries — com qualidade, estabilidade e simplicidade.</p>
+    </div>
+    <div class="feat-grid">
+      <article class="feat reveal">
+        <div class="feat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#ff8d7a"/></svg></div>
+        <h3>Canais ao vivo</h3>
+        <p>Mais de 1.000 canais de TV aberta, esportes, notícias e entretenimento, transmitidos com estabilidade no dia a dia.</p>
+      </article>
+      <article class="feat reveal d1">
+        <div class="feat-ic amber"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#f2b33d" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="#f2b33d" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Futebol ao vivo</h3>
+        <p>Todos os jogos do Brasileirão, Premier League, LaLiga e mais — com avisos de início e lista de partidas do dia.</p>
+      </article>
+      <article class="feat reveal d2">
+        <div class="feat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#ff8d7a" stroke-width="2"/><path d="m10 9 5 3-5 3V9z" fill="#ff8d7a"/></svg></div>
+        <h3>Filmes em 4K HDR</h3>
+        <p>Lançamentos e clássicos do cinema em altíssima qualidade, com áudio imersivo e sem interrupções.</p>
+      </article>
+      <article class="feat reveal d3">
+        <div class="feat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="#ff8d7a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Séries completas</h3>
+        <p>Temporadas inteiras organizadas por episódio — continue de onde parou em qualquer aparelho.</p>
+      </article>
+      <article class="feat reveal d4">
+        <div class="feat-ic amber"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.3l6.1-.7L12 3z" fill="#f2b33d"/></svg></div>
+        <h3>KIDS</h3>
+        <p>Um espaço seguro para os pequenos: desenhos, filmes infantis e conteúdo selecionado por faixa etária.</p>
+      </article>
+      <article class="feat reveal d4">
+        <div class="feat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="#ff8d7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="#ff8d7a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Destaques &amp; lançamentos</h3>
+        <p>Coleções curadas de top popular, novos lançamentos e os títulos mais bem avaliados, sempre atualizados.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATÁLOGO ================= -->
+<section id="catalogo" style="padding-top:40px">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Catálogo</span>
+      <h2>Escolha o que assistir agora</h2>
+      <p>Um catálogo vivo, com curadoria semanal e navegação simples — igual à experiência do app na sua TV.</p>
+    </div>
+    <div class="tabs reveal" role="tablist" aria-label="Categorias do catálogo">
+      <button class="tab on" role="tab" aria-selected="true" data-tab="p1">Top Popular</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="p2">Novidades</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="p3">Mais bem avaliados</button>
+    </div>
+    <div class="tab-panel on" id="p1" role="tabpanel">
+      <div class="poster-grid">
+        <div class="poster a1"><span class="q">4K</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 8,6 · Ficção</span></div></div>
+        <div class="poster a2"><span class="q">4K</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,0 · Ação</span></div></div>
+        <div class="poster a3"><span class="q">4K</span><div class="art"><img src="assets/posters/divertida-mente-2.jpg" alt="Divertida Mente 2" loading="lazy"></div><div class="meta"><b>Divertida Mente 2</b><span>★ 7,8 · Animação</span></div></div>
+        <div class="poster a4"><span class="q">4K</span><div class="art"><img src="assets/posters/gladiador-2.jpg" alt="Gladiador II" loading="lazy"></div><div class="meta"><b>Gladiador II</b><span>★ 7,0 · Ação</span></div></div>
+        <div class="poster a5"><span class="q">4K</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 8,8 · Drama</span></div></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="p2" role="tabpanel">
+      <div class="poster-grid">
+        <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,2 · Terror</span></div></div>
+        <div class="poster a7"><span class="q">NEW</span><div class="art"><img src="assets/posters/wicked.jpg" alt="Wicked" loading="lazy"></div><div class="meta"><b>Wicked</b><span>★ 7,8 · Musical</span></div></div>
+        <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/moana-2.jpg" alt="Moana 2" loading="lazy"></div><div class="meta"><b>Moana 2</b><span>★ 7,4 · Animação</span></div></div>
+        <div class="poster a9"><span class="q">NEW</span><div class="art"><img src="assets/posters/alien-romulus.jpg" alt="Alien: Romulus" loading="lazy"></div><div class="meta"><b>Alien: Romulus</b><span>★ 7,5 · Terror</span></div></div>
+        <div class="poster a10"><span class="q">4K</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 8,5 · Drama</span></div></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="p3" role="tabpanel">
+      <div class="poster-grid">
+        <div class="poster a5"><span class="q">TOP 1</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 9,3 · Drama</span></div></div>
+        <div class="poster a1"><span class="q">TOP 2</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 9,1 · Ficção</span></div></div>
+        <div class="poster a10"><span class="q">TOP 3</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 9,0 · Drama</span></div></div>
+        <div class="poster a6"><span class="q">TOP 4</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,9 · Terror</span></div></div>
+        <div class="poster a2"><span class="q">TOP 5</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,7 · Ação</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRIAL ================= -->
+<section id="teste" style="padding-top:20px">
+  <div class="container">
+    <div class="banner reveal">
+      <div>
+        <span class="eyebrow" style="margin-bottom:14px"><span class="dot"></span>Teste grátis</span>
+        <h2>Experimente por 7 dias</h2>
+        <p>Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso. Se gostar, escolha seu plano.</p>
+      </div>
+      <div class="btns">
+        <a class="btn btn-amber" href="#dispositivos">Baixar aplicativo</a>
+        <button class="btn btn-ghost" data-login>Criar conta grátis</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DISPOSITIVOS ================= -->
+<section id="dispositivos" style="padding-top:30px">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Compatibilidade</span>
+      <h2>Funciona nos seus aparelhos</h2>
+      <p>Leve a TVCinema para qualquer tela da casa — configuração em minutos, sem complicações.</p>
+    </div>
+    <div class="dev-grid">
+      <article class="dev reveal">
+        <div class="dev-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2.5" stroke="#ff8d7a" stroke-width="2"/><path d="M8 21h8m-4-4v4" stroke="#ff8d7a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Televisão</h3>
+        <p>Assista diretamente na sua TV com Android TV.</p>
+        <a class="btn btn-ghost btn-sm" href="#" onclick="return false">Download</a>
+      </article>
+      <article class="dev reveal d1">
+        <div class="dev-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2.5" stroke="#ff8d7a" stroke-width="2"/><path d="M10 18h4" stroke="#ff8d7a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>TV Box</h3>
+        <p>Compatível com TV Box Android de diversos modelos.</p>
+        <a class="btn btn-ghost btn-sm" href="#" onclick="return false">Download</a>
+      </article>
+      <article class="dev reveal d2">
+        <div class="dev-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M9 3h6v4H9zM7 7h10a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2z" stroke="#ff8d7a" stroke-width="2" stroke-linejoin="round"/></svg></div>
+        <h3>TV Stick</h3>
+        <p>Use no seu TV Stick e leve a TVCinema para qualquer lugar.</p>
+        <a class="btn btn-ghost btn-sm" href="#" onclick="return false">Download</a>
+      </article>
+      <article class="dev reveal d3">
+        <div class="dev-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="#ff8d7a" stroke-width="2"/><path d="M11 18.5h2" stroke="#ff8d7a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Celular</h3>
+        <p>Baixe o aplicativo da TVCinema no seu celular Android.</p>
+        <a class="btn btn-ghost btn-sm" href="#" onclick="return false">Download</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPOIMENTOS ================= -->
+<section id="depoimentos" style="padding-top:30px">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Depoimentos</span>
+      <h2>Quem assiste, recomenda</h2>
+    </div>
+    <div class="tst-wrap reveal">
+      <div class="tst-track">
+        <div class="tst-inner" id="tstInner">
+          <div class="tst">
+            <div class="avatar">C</div>
+            <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <q>A TVCinema virou minha primeira opção para assistir aos jogos e aos canais ao vivo que mais gosto. A transmissão é estável e funciona muito bem no dia a dia.</q>
+            <div class="who"><b>Carlos Alberto</b><span>Cliente satisfeito da TVCinema</span></div>
+          </div>
+          <div class="tst">
+            <div class="avatar">J</div>
+            <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <q>Desde que comecei a usar, ficou muito mais fácil acompanhar partidas e filmes sem complicação. A experiência é simples, fluida e a imagem é excelente.</q>
+            <div class="who"><b>José da Silva</b><span>Apaixonado por futebol e cinema</span></div>
+          </div>
+          <div class="tst">
+            <div class="avatar">H</div>
+            <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <q>Gosto bastante da variedade de canais e da estabilidade. Consigo assistir ao que quero com qualidade 4K e sem interrupções desnecessárias.</q>
+            <div class="who"><b>Henrique Amaral</b><span>Aproveitando melhor o conteúdo da TVCinema</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="dots" id="tstDots" role="tablist" aria-label="Depoimentos"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" style="padding-top:30px">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Dúvidas frequentes</span>
+      <h2>Perguntas &amp; respostas</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq">
+        <button class="faq-q" aria-expanded="false">O que é a TVCinema?
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><p>A TVCinema é uma plataforma dedicada à TV ao vivo, esportes, filmes e séries. Acompanhe seus jogos e programas preferidos com qualidade e estabilidade, na TV, no TV Box, no TV Stick ou no celular.</p></div>
+      </div>
+      <div class="faq">
+        <button class="faq-q" aria-expanded="false">Em quais dispositivos funciona?
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><p>Android TV, TV Box, TV Stick e celulares Android. O aplicativo é leve e a configuração leva poucos minutos — basta fazer o download, entrar com sua conta e começar a assistir.</p></div>
+      </div>
+      <div class="faq">
+        <button class="faq-q" aria-expanded="false">Existe período de teste grátis?
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><p>Sim! Todos os novos cadastros têm 7 dias de teste gratuito, sem interrupções e sem compromisso. Você só assina se gostar da experiência.</p></div>
+      </div>
+      <div class="faq">
+        <button class="faq-q" aria-expanded="false">Qual a qualidade da transmissão?
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><p>Transmitimos em HD e 4K HDR (nos planos elegíveis), com servidores otimizados para estabilidade mesmo em horários de pico, como finais de campeonato.</p></div>
+      </div>
+      <div class="faq">
+        <button class="faq-q" aria-expanded="false">Quantas telas posso usar ao mesmo tempo?
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><p>O plano Essencial inclui 1 tela simultânea; os planos Trimestral e Anual incluem 2 telas — perfeito para assistir o jogo na sala e o filme no quarto.</p></div>
+      </div>
+      <div class="faq">
+        <button class="faq-q" aria-expanded="false">Quais são as formas de pagamento?
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="faq-a"><p>Aceitamos Pix, cartão de crédito e boleto. A ativação é imediata após a confirmação do pagamento, e o suporte acontece pelo Telegram, 7 dias por semana.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section style="padding-top:20px">
+  <div class="container">
+    <div class="banner reveal" style="justify-content:center;text-align:center">
+      <div style="margin-inline:auto">
+        <h2>A emoção do cinema começa aqui</h2>
+        <p style="margin-inline:auto">Assine a TVCinema e transforme sua sala em um estádio e em uma sala de cinema — hoje mesmo.</p>
+      </div>
+      <div class="btns" style="justify-content:center;width:100%">
+        <a class="btn btn-amber" href="#planos">Escolher meu plano</a>
+        <a class="btn btn-ghost" href="#teste">Começar grátis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#inicio">
+          <span class="brand-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#fff"/></svg></span>
+          <span class="brand-name">TV<span>Cinema</span></span>
+        </a>
+        <p>O seu cinema dentro de casa. Plataforma dedicada aos canais de TV ao vivo, esportes, filmes e séries — com qualidade e estabilidade.</p>
+        <div class="socials">
+          <a class="soc" href="#" onclick="return false" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.5 4.5 2.8 11.7c-.9.3-.9 1.5 0 1.8l4.6 1.5 1.8 5.4c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7l3-15.2c.2-1-.8-1.8-1.9-1.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+          <a class="soc" href="#" onclick="return false" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a>
+          <a class="soc" href="#" onclick="return false" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5" width="19" height="14" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="m10 9 5 3-5 3V9z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <a href="#inicio">Início</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#planos">Planos</a>
+      </div>
+      <div class="foot-col">
+        <h4>Conteúdo</h4>
+        <a href="#catalogo">Filmes</a>
+        <a href="#catalogo">Séries</a>
+        <a href="#recursos">Esportes ao vivo</a>
+        <a href="#recursos">KIDS</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contate-nos</h4>
+        <a class="tg-pill" href="#" onclick="return false">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21.5 4.5 2.8 11.7c-.9.3-.9 1.5 0 1.8l4.6 1.5 1.8 5.4c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7l3-15.2c.2-1-.8-1.8-1.9-1.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          Telegram: @tvcinemabot
+        </a>
+        <a href="#faq">Perguntas frequentes</a>
+        <a href="#teste">Teste grátis</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 TVCinema — Todos os direitos reservados.</span>
+      <span>Feito para quem vive o cinema e o futebol. 🔴⚽</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= CHECKOUT ================= -->
+<div class="ck-mask" id="checkout" role="dialog" aria-modal="true" aria-labelledby="ckTitle">
+  <div class="ck-wrap">
+    <header class="ck-top">
+      <a class="brand" href="#inicio" data-ckclose aria-label="TVCinema — início">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#fff"/></svg>
+        </span>
+        <span class="brand-name">TV<span>Cinema</span></span>
+      </a>
+      <ol class="ck-steps" id="ckSteps">
+        <li class="on" id="ckLi1"><span>1</span>Método de pagamento</li>
+        <li id="ckLi2"><span>2</span>Detalhes de pagamento</li>
+      </ol>
+      <button class="ck-close-btn" id="ckClose" aria-label="Fechar checkout">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="ck-grid">
+      <div class="ck-main">
+        <!-- Passo 1: método de pagamento -->
+        <section class="ck-step on" id="ckStep1" aria-label="Passo 1">
+          <div class="ck-card">
+            <h2 id="ckTitle">Método de pagamento</h2>
+            <div class="field">
+              <label for="ckCur">Moeda:</label>
+              <select id="ckCur">
+                <option value="BRL" selected>BRL</option>
+                <option value="USD">USD</option>
+              </select>
+            </div>
+            <div class="field">
+              <label id="ckPmLabel">Método de pagamento:</label>
+              <div class="pm-row" role="radiogroup" aria-labelledby="ckPmLabel">
+                <label class="pm on">
+                  <input type="radio" name="pm" value="pix" checked>
+                  <b>PIX</b>
+                </label>
+                <label class="pm">
+                  <input type="radio" name="pm" value="gp">
+                  <b>GLOBAL PAY</b>
+                </label>
+              </div>
+              <div class="pm-brand" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.6 15.2 5.8 12.9 8.1a1.6 1.6 0 0 1-1.8 0L8.8 5.8 12 2.6Z" fill="#32BCAD"/><path d="m5.8 8.8 2.3 2.3a1.6 1.6 0 0 1 0 1.8L5.8 15.2 2.6 12l3.2-3.2Z" fill="#32BCAD"/><path d="M18.2 8.8 21.4 12l-3.2 3.2-2.3-2.3a1.6 1.6 0 0 1 0-1.8l2.3-2.3Z" fill="#32BCAD"/><path d="m8.8 18.2 2.3-2.3a1.6 1.6 0 0 1 1.8 0l2.3 2.3L12 21.4l-3.2-3.2Z" fill="#32BCAD"/><path d="M12 8.9a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2Z" fill="#32BCAD"/></svg>
+                <b>pix</b>
+              </div>
+            </div>
+            <button class="btn btn-amber ck-cta" id="ckToStep2">Continuar para o pagamento</button>
+          </div>
+        </section>
+
+        <!-- Passo 2: detalhes de pagamento -->
+        <section class="ck-step" id="ckStep2" aria-label="Passo 2">
+          <button class="ck-back" id="ckBack" aria-label="Voltar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="ck-card">
+            <h2>Detalhes de pagamento</h2>
+            <form id="ckForm" novalidate>
+              <div class="ck-form-grid">
+                <div class="field">
+                  <label for="ckFn">Primeiro nome:</label>
+                  <input id="ckFn" autocomplete="given-name" placeholder="Primeiro nome" required>
+                </div>
+                <div class="field">
+                  <label for="ckLn">Sobrenome:</label>
+                  <input id="ckLn" autocomplete="family-name" placeholder="Sobrenome" required>
+                </div>
+                <div class="field">
+                  <label id="ckIdLabel">Tipo de ID:</label>
+                  <div class="radio-inline" role="radiogroup" aria-labelledby="ckIdLabel">
+                    <label><input type="radio" name="idtype" value="CPF" checked>CPF</label>
+                    <label><input type="radio" name="idtype" value="CNPJ">CNPJ</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="ckIdNum">Número do ID:</label>
+                  <input id="ckIdNum" inputmode="numeric" placeholder="xxx.xxx.xxx-xx" required>
+                </div>
+                <div class="field full">
+                  <label for="ckPhone">Telefone:</label>
+                  <div class="phone-row">
+                    <select id="ckDdi" aria-label="Código do país">
+                      <option value="+55" selected>🇧🇷 +55</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+351">🇵🇹 +351</option>
+                      <option value="+44">🇬🇧 +44</option>
+                    </select>
+                    <input id="ckPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Telefone" required>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="ckUf">Estado (UF):</label>
+                  <select id="ckUf" required>
+                    <option value="" selected disabled>Estado (UF)</option>
+                    <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="ckCity">Cidade</label>
+                  <input id="ckCity" placeholder="Cidade" required>
+                </div>
+                <div class="field">
+                  <label for="ckHood">Bairro</label>
+                  <input id="ckHood" placeholder="Bairro" required>
+                </div>
+                <div class="field">
+                  <label for="ckNum">Número</label>
+                  <input id="ckNum" placeholder="Número" required>
+                </div>
+                <div class="field">
+                  <label for="ckAddr">Endereço completo</label>
+                  <input id="ckAddr" autocomplete="street-address" placeholder="Endereço completo" required>
+                </div>
+                <div class="field">
+                  <label for="ckZip">CEP</label>
+                  <input id="ckZip" inputmode="numeric" placeholder="xxxxx-xxx" required>
+                </div>
+              </div>
+              <button class="btn btn-amber ck-cta" type="submit">Confirmar pagamento</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Confirmação -->
+        <section class="ck-step" id="ckDone" aria-label="Confirmação">
+          <div class="ck-card ck-done">
+            <div class="big-check">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m5 13 4.5 4.5L19 7" stroke="#5fbf77" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h2>Pagamento confirmado!</h2>
+            <p>Seu pedido foi registrado. Os dados de acesso chegam ao seu e-mail em instantes. (demonstração)</p>
+            <button class="btn btn-amber" data-ckclose>Voltar ao início</button>
+          </div>
+        </section>
+      </div>
+
+      <aside class="ck-side">
+        <div class="ck-summary" aria-live="polite">
+          <h3 id="ckPlanName">Cinema+</h3>
+          <p class="ck-sub" id="ckPlanSub">12 meses · 2 telas · 4K HDR + KIDS</p>
+          <dl>
+            <div><dt>Preço</dt><dd id="ckPrice">R$ 19,90</dd></div>
+            <div id="ckDiscRow"><dt>Desconto <em id="ckDiscPct">(-50%)</em></dt><dd class="neg" id="ckDisc">-R$ 10,00</dd></div>
+            <div id="ckCoupRow" hidden><dt>Cupom <em id="ckCoupPct">(-10%)</em></dt><dd class="neg" id="ckCoup">-R$ 0,99</dd></div>
+            <div class="tot"><dt>Total:</dt><dd id="ckTotal">R$ 9,90</dd></div>
+          </dl>
+          <p class="ck-note" id="ckNote">cobrança anual de R$ 118,80</p>
+          <div class="ck-coupon">
+            <input id="ckCode" placeholder="Código promocional" aria-label="Código promocional">
+            <button class="btn btn-ghost" type="button" id="ckApply">Aplicar</button>
+          </div>
+          <p class="ck-msg" id="ckMsg"></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL LOGIN ================= -->
+<div class="modal-mask" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="modal">
+    <button class="close" id="loginClose" aria-label="Fechar">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <h3 id="loginTitle">Entrar na TVCinema</h3>
+    <p>Acesse sua conta para continuar assistindo.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="voce@email.com" required>
+      </div>
+      <div class="field">
+        <label for="pass">Senha</label>
+        <input id="pass" type="password" placeholder="••••••••" required>
+      </div>
+      <button class="btn btn-amber" type="submit">Entrar</button>
+      <p class="alt">Ainda não tem conta? <a href="#teste" data-closemodal>Comece os 7 dias grátis</a></p>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ---------- Boot: js/no-anim flags ---------- */
+document.documentElement.classList.add('js');
+if(location.search.indexOf('noanim')>-1)document.documentElement.classList.add('no-anim');
+let LANG='pt';
+
+/* ---------- Header scroll ---------- */
+const header=document.getElementById('header');
+const onScroll=()=>header.classList.toggle('scrolled',window.scrollY>24);
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- Mobile menu ---------- */
+const ham=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{
+  const open=mm.classList.toggle('open');
+  ham.setAttribute('aria-expanded',open);
+});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mm.classList.remove('open');ham.setAttribute('aria-expanded','false');}));
+
+/* ---------- Active nav ---------- */
+const navLinks=[...document.querySelectorAll('.nav-links a')];
+const secs=navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>spy.observe(s));
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- Counters ---------- */
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.count,t0=performance.now(),dur=1400;
+    const tick=t=>{
+      const p=Math.min((t-t0)/dur,1),v=Math.floor(target*(1-Math.pow(1-p,3)));
+      el.textContent=v.toLocaleString(LANG==='en'?'en-US':'pt-BR');
+      if(p<1)requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);cio.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* ---------- Catálogo tabs ---------- */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('on');t.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+    tab.classList.add('on');tab.setAttribute('aria-selected','true');
+    document.getElementById(tab.dataset.tab).classList.add('on');
+  });
+});
+
+/* ---------- Planos: ciclo é a única fonte de verdade do período ---------- */
+let CYCLE='t';
+const CYCLES={
+  m:{months:1,disc:0},
+  t:{months:3,disc:27},
+  a:{months:12,disc:50}
+};
+/* preço-base = mensal sem desconto (em centavos) */
+const PLANS={
+  ess:{base:1990,screens:{pt:'1 tela',en:'1 screen'},quality:'Full HD',kids:false},
+  cin:{base:2990,screens:{pt:'2 telas',en:'2 screens'},quality:'4K HDR',kids:true},
+  fam:{base:3990,screens:{pt:'4 telas',en:'4 screens'},quality:'4K HDR',kids:true}
+};
+const PLAN_NAMES={
+  ess:{pt:'Essencial',en:'Essential'},
+  cin:{pt:'Cinema+',en:'Cinema+'},
+  fam:{pt:'Família',en:'Family'}
+};
+const brl=c=>'R$ '+(c/100).toFixed(2).replace('.',',');
+function monthsLabel(n,lang){
+  return lang==='en' ? n+(n===1?' month':' months') : n+(n===1?' mês':' meses');
+}
+/* 报价：月均价按周期折扣，总额 = 月均价 × 月数 —— 全站一致 */
+function planQuote(key){
+  const P=PLANS[key]||PLANS.cin,C=CYCLES[CYCLE];
+  const monthly=Math.round(P.base*(100-C.disc)/100);
+  return {key,P,C,monthly,total:monthly*C.months,list:P.base*C.months};
+}
+function billingNote(q,lang){
+  if(q.C.months===1) return lang==='en'?'billed monthly · no lock-in':'cobrança mensal · sem fidelidade';
+  const t=brl(q.total);
+  if(lang==='en') return (q.C.months===3?'billed quarterly — ':'billed yearly — ')+t;
+  return (q.C.months===3?'cobrança trimestral de ':'cobrança anual de ')+t;
+}
+function syncPlans(){
+  const lang=LANG;
+  document.querySelectorAll('.plan[data-plan]').forEach(card=>{
+    const q=planQuote(card.dataset.plan);
+    card.querySelector('.p-price b').textContent=brl(q.monthly);
+    card.querySelector('.p-total').textContent=billingNote(q,lang);
+    card.querySelector('.p-days').textContent='⏱ '+monthsLabel(q.C.months,lang)+(lang==='en'?' of access':' de acesso');
+  });
+}
+document.querySelectorAll('.pt').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pt').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    CYCLE=btn.dataset.cycle;
+    syncPlans();
+  });
+});
+
+/* ---------- Depoimentos carousel ---------- */
+const inner=document.getElementById('tstInner');
+const slides=inner.children.length,dotsBox=document.getElementById('tstDots');
+let idx=0,timer;
+for(let i=0;i<slides;i++){
+  const b=document.createElement('button');
+  b.className='dot-b'+(i?'':' on');
+  b.setAttribute('aria-label',(LANG==='en'?'Testimonial ':'Depoimento ')+(i+1));
+  b.addEventListener('click',()=>{go(i);restart();});
+  dotsBox.appendChild(b);
+}
+const dots=[...dotsBox.children];
+function go(i){
+  idx=(i+slides)%slides;
+  inner.style.transform='translateX(-'+idx*100+'%)';
+  dots.forEach((d,k)=>d.classList.toggle('on',k===idx));
+}
+function restart(){clearInterval(timer);timer=setInterval(()=>go(idx+1),5200);}
+restart();
+
+/* ---------- FAQ ---------- */
+document.querySelectorAll('.faq').forEach(f=>{
+  const q=f.querySelector('.faq-q'),a=f.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const open=f.classList.contains('open');
+    document.querySelectorAll('.faq.open').forEach(o=>{
+      o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;
+      o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!open){
+      f.classList.add('open');
+      a.style.maxHeight=a.scrollHeight+'px';
+      q.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+/* ---------- Login modal ---------- */
+const modal=document.getElementById('loginModal');
+const openModal=()=>{modal.classList.add('open');document.getElementById('email').focus();};
+const closeModal=()=>modal.classList.remove('open');
+document.querySelectorAll('[data-login]').forEach(b=>b.addEventListener('click',()=>{
+  mm.classList.remove('open');
+  if(authed){authed=false;try{localStorage.removeItem('tvcAuth');}catch(e){}syncAuthUI();return;}
+  pendingPlan=null;openModal();
+}));
+document.getElementById('loginClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(CK.classList.contains('open'))closeCheckout();else closeModal();}});
+document.querySelectorAll('[data-closemodal]').forEach(a=>a.addEventListener('click',closeModal));
+document.getElementById('loginForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  authed=true;try{localStorage.setItem('tvcAuth','1');}catch(err){}
+  const em=document.getElementById('email').value.split('@')[0].replace(/[._\-+].*$/,'');
+  userName=em?em.charAt(0).toUpperCase()+em.slice(1):'User';
+  closeModal();syncAuthUI();e.target.reset();
+  if(pendingPlan){const p=pendingPlan;pendingPlan=null;openCheckout(p);}
+});
+
+/* ==========================================================
+   i18n — PT-BR (default) / EN
+   ========================================================== */
+const DICT={
+/* nav */
+"Início":"Home",
+"Recursos":"Features",
+"Catálogo":"Catalog",
+"Planos":"Plans",
+"Download":"Download",
+/* checkout */
+"Método de pagamento":"Payment method",
+"Detalhes de pagamento":"Payment details",
+"Moeda:":"Currency:",
+"Método de pagamento:":"Payment method:",
+"Continuar para o pagamento":"Continue to Payment",
+"Confirmar pagamento":"Confirm payment",
+"Fechar checkout":"Close checkout",
+"Voltar":"Back",
+"Preço":"Price",
+"Desconto":"Discount",
+"Total:":"Total:",
+"Código promocional":"Promo code",
+"Aplicar":"Apply",
+"Primeiro nome:":"First name:",
+"Sobrenome:":"Last name:",
+"Tipo de ID:":"ID type:",
+"Número do ID:":"ID number:",
+"Telefone:":"Phone number:",
+"Estado (UF):":"State (Abbreviation):",
+"Cidade":"City",
+"Bairro":"Neighborhood",
+"Número":"Number",
+"Endereço completo":"Full street address",
+"CEP":"ZIP code",
+"Primeiro nome":"First name",
+"Sobrenome":"Last name",
+"Telefone":"Phone number",
+"Estado (UF)":"State",
+"Código do país":"Country code",
+"Passo 1":"Step 1",
+"Passo 2":"Step 2",
+"Confirmação":"Confirmation",
+"Pagamento confirmado!":"Payment confirmed!",
+"Seu pedido foi registrado. Os dados de acesso chegam ao seu e-mail em instantes. (demonstração)":"Your order has been placed. Your access details will arrive by e-mail shortly. (demo)",
+"Voltar ao início":"Back to home",
+"Entrar":"Sign in",
+"Assinar":"Subscribe",
+"Entrar na minha conta":"Sign in to my account",
+"Navegação principal":"Main navigation",
+"Abrir menu":"Open menu",
+"TVCinema — início":"TVCinema — home",
+/* hero */
+"Canais, filmes e jogos ao vivo":"Live channels, movies and sports",
+"O cinema inteiro":"All the cinema",
+"em":"in",
+"um só lugar":"one place",
+"Com a TVCinema você acompanha os principais jogos brasileiros e o melhor do futebol mundial, além dos seus canais, filmes e séries favoritos. Assista quando quiser, de onde estiver.":"With TVCinema you follow the biggest Brazilian matches and the best of world football, plus your favourite channels, movies and series. Watch whenever you want, wherever you are.",
+"Assinar agora":"Subscribe now",
+"Testar 7 dias grátis":"Try 7 days free",
+"Canais":"Channels",
+"Filmes & séries":"Movies & series",
+"Qualidade":"Quality",
+"7 dias":"7 days",
+"Grátis":"Free",
+"AO VIVO":"LIVE",
+"Jogos hoje":"Matches today",
+"18 partidas":"18 matches",
+"4K HDR estável":"Stable 4K HDR",
+"hoje":"today",
+"Prévia da interface TVCinema na TV, com a lista de partidas de hoje":"Preview of the TVCinema interface on TV, showing today's match list",
+/* recursos */
+"Tudo o que você precisa em um só lugar":"Everything you need, in one place",
+"Uma plataforma completa dedicada à TV ao vivo, esportes, filmes e séries — com qualidade, estabilidade e simplicidade.":"A complete platform for live TV, sports, movies and series — with quality, stability and simplicity.",
+"Canais ao vivo":"Live channels",
+"Mais de 1.000 canais de TV aberta, esportes, notícias e entretenimento, transmitidos com estabilidade no dia a dia.":"Over 1,000 channels covering free-to-air TV, sports, news and entertainment, streamed with day-to-day stability.",
+"Futebol ao vivo":"Live football",
+"Todos os jogos do Brasileirão, Premier League, LaLiga e mais — com avisos de início e lista de partidas do dia.":"Every Brasileirão, Premier League, LaLiga match and more — with kick-off alerts and today's match list.",
+"Filmes em 4K HDR":"Movies in 4K HDR",
+"Lançamentos e clássicos do cinema em altíssima qualidade, com áudio imersivo e sem interrupções.":"New releases and cinema classics in top quality, with immersive audio and no interruptions.",
+"Séries completas":"Complete series",
+"Temporadas inteiras organizadas por episódio — continue de onde parou em qualquer aparelho.":"Full seasons organised by episode — pick up right where you left off, on any device.",
+"Um espaço seguro para os pequenos: desenhos, filmes infantis e conteúdo selecionado por faixa etária.":"A safe space for little ones: cartoons, kids' movies and content curated by age group.",
+"Destaques & lançamentos":"Featured & new releases",
+"Coleções curadas de top popular, novos lançamentos e os títulos mais bem avaliados, sempre atualizados.":"Curated collections of top popular, new releases and the highest-rated titles, always up to date.",
+/* catálogo */
+"Escolha o que assistir agora":"Choose what to watch now",
+"Um catálogo vivo, com curadoria semanal e navegação simples — igual à experiência do app na sua TV.":"A living catalog with weekly curation and simple navigation — just like the app experience on your TV.",
+"Novidades":"New releases",
+"Mais bem avaliados":"Top rated",
+"Categorias do catálogo":"Catalog categories",
+"Duna: Parte Dois":"Dune: Part Two",
+"Divertida Mente 2":"Inside Out 2",
+"Gladiador II":"Gladiator II",
+"A Substância":"The Substance",
+"Ainda Estou Aqui":"I'm Still Here",
+"★ 8,6 · Ficção":"★ 8.6 · Sci-Fi",
+"★ 8,0 · Ação":"★ 8.0 · Action",
+"★ 7,8 · Animação":"★ 7.8 · Animation",
+"★ 7,0 · Ação":"★ 7.0 · Action",
+"★ 8,8 · Drama":"★ 8.8 · Drama",
+"★ 8,2 · Terror":"★ 8.2 · Horror",
+"★ 7,8 · Musical":"★ 7.8 · Musical",
+"★ 7,4 · Animação":"★ 7.4 · Animation",
+"★ 7,5 · Terror":"★ 7.5 · Horror",
+"★ 8,5 · Drama":"★ 8.5 · Drama",
+"★ 9,3 · Drama":"★ 9.3 · Drama",
+"★ 9,1 · Ficção":"★ 9.1 · Sci-Fi",
+"★ 9,0 · Drama":"★ 9.0 · Drama",
+"★ 8,9 · Terror":"★ 8.9 · Horror",
+"★ 8,7 · Ação":"★ 8.7 · Action",
+"Ação & Aventura":"Action & Adventure",
+"1.240 títulos":"1,240 titles",
+"980 títulos":"980 titles",
+"Comédia":"Comedy",
+"760 títulos":"760 titles",
+"Terror & Suspense":"Horror & Thriller",
+"610 títulos":"610 titles",
+"Ficção científica":"Sci-Fi",
+"540 títulos":"540 titles",
+/* planos */
+"Planos disponíveis":"Available plans",
+"A emoção do cinema começa aqui":"The thrill of cinema starts here",
+"Assine a TVCinema e transforme sua casa em uma experiência completa de entretenimento — em um único passo, sem complicações.":"Subscribe to TVCinema and turn your home into a complete entertainment experience — in a single step, no hassle.",
+"Ciclo de cobrança":"Billing cycle",
+"Mensal":"Monthly",
+"Trimestral":"Quarterly",
+"Anual":"Yearly",
+"Essencial":"Essential",
+"/mês":"/month",
+"cobrança mensal · sem fidelidade":"billed monthly · no lock-in",
+"⏱ 30 dias de acesso":"⏱ 30 days of access",
+"Canais ao vivo + catálogo completo":"Live channels + full catalog",
+"Suporte 7 dias por semana":"Support 7 days a week",
+"Acesso mobile":"Mobile access",
+"1 tela simultânea":"1 simultaneous screen",
+"Assinar plano":"Choose plan",
+"Escolher plano":"Choose plan",
+"Família":"Family",
+"Tudo do Cinema+":"Everything in Cinema+",
+"4 telas simultâneas":"4 simultaneous screens",
+"Melhor custo-benefício":"Best value",
+"cobrança anual de R$ 118,80":"billed yearly — R$ 118.80",
+"⏱ 365 dias de acesso":"⏱ 365 days of access",
+"Tudo do Essencial":"Everything in Essential",
+"Qualidade 4K HDR":"4K HDR quality",
+"2 telas simultâneas":"2 simultaneous screens",
+"Perfil KIDS com controle parental":"KIDS profile with parental controls",
+"Suporte prioritário no Telegram":"Priority support on Telegram",
+"Assinar anual":"Subscribe yearly",
+"cobrança trimestral de R$ 43,90":"billed quarterly — R$ 43.90",
+"⏱ 90 dias de acesso":"⏱ 90 days of access",
+"💳 Pix, cartão de crédito e boleto · 🔒 Pagamento seguro ·":"💳 Pix, credit card and boleto · 🔒 Secure payment ·",
+"Edição de lançamento: primeiros 7 dias grátis em qualquer plano":"Launch offer: first 7 days free on any plan",
+/* teste */
+"Teste grátis":"Free trial",
+"Experimente por 7 dias":"Try it for 7 days",
+"Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso. Se gostar, escolha seu plano.":"Download it on your device and try it for free — no interruptions, no commitment. If you like it, pick your plan.",
+"Baixar aplicativo":"Download the app",
+"Criar conta grátis":"Create free account",
+/* dispositivos */
+"Compatibilidade":"Compatibility",
+"Funciona nos seus aparelhos":"Works on your devices",
+"Leve a TVCinema para qualquer tela da casa — configuração em minutos, sem complicações.":"Bring TVCinema to any screen at home — set up in minutes, no hassle.",
+"Televisão":"Television",
+"Assista diretamente na sua TV com Android TV.":"Watch directly on your TV with Android TV.",
+"Compatível com TV Box Android de diversos modelos.":"Compatible with Android TV Box models from multiple brands.",
+"Use no seu TV Stick e leve a TVCinema para qualquer lugar.":"Use it on your TV Stick and take TVCinema anywhere.",
+"Celular":"Mobile",
+"Baixe o aplicativo da TVCinema no seu celular Android.":"Download the TVCinema app on your Android phone.",
+/* depoimentos */
+"Depoimentos":"Testimonials",
+"Quem assiste, recomenda":"Those who watch, recommend",
+"A TVCinema virou minha primeira opção para assistir aos jogos e aos canais ao vivo que mais gosto. A transmissão é estável e funciona muito bem no dia a dia.":"TVCinema became my first choice for the matches and live channels I love most. The stream is stable and works great day to day.",
+"Cliente satisfeito da TVCinema":"Happy TVCinema customer",
+"Desde que comecei a usar, ficou muito mais fácil acompanhar partidas e filmes sem complicação. A experiência é simples, fluida e a imagem é excelente.":"Since I started using it, following matches and movies has become much easier. The experience is simple and smooth, and the picture quality is excellent.",
+"Apaixonado por futebol e cinema":"Football and cinema fan",
+"Gosto bastante da variedade de canais e da estabilidade. Consigo assistir ao que quero com qualidade 4K e sem interrupções desnecessárias.":"I really like the variety of channels and the stability. I can watch what I want in 4K quality, without unnecessary interruptions.",
+"Aproveitando melhor o conteúdo da TVCinema":"Getting more out of TVCinema",
+"5 de 5 estrelas":"5 out of 5 stars",
+/* faq */
+"Dúvidas frequentes":"FAQ",
+"Perguntas & respostas":"Questions & answers",
+"O que é a TVCinema?":"What is TVCinema?",
+"A TVCinema é uma plataforma dedicada à TV ao vivo, esportes, filmes e séries. Acompanhe seus jogos e programas preferidos com qualidade e estabilidade, na TV, no TV Box, no TV Stick ou no celular.":"TVCinema is a platform dedicated to live TV, sports, movies and series. Follow your favourite matches and shows with quality and stability — on TV, TV Box, TV Stick or mobile.",
+"Em quais dispositivos funciona?":"Which devices does it work on?",
+"Android TV, TV Box, TV Stick e celulares Android. O aplicativo é leve e a configuração leva poucos minutos — basta fazer o download, entrar com sua conta e começar a assistir.":"Android TV, TV Box, TV Stick and Android phones. The app is lightweight and setup takes only a few minutes — just download it, sign in and start watching.",
+"Existe período de teste grátis?":"Is there a free trial?",
+"Sim! Todos os novos cadastros têm 7 dias de teste gratuito, sem interrupções e sem compromisso. Você só assina se gostar da experiência.":"Yes! Every new sign-up gets a 7-day free trial, with no interruptions and no commitment. You only subscribe if you like the experience.",
+"Qual a qualidade da transmissão?":"What is the streaming quality?",
+"Transmitimos em HD e 4K HDR (nos planos elegíveis), com servidores otimizados para estabilidade mesmo em horários de pico, como finais de campeonato.":"We stream in HD and 4K HDR (on eligible plans), with servers optimised for stability even at peak times such as cup finals.",
+"Quantas telas posso usar ao mesmo tempo?":"How many screens can I use at the same time?",
+"O plano Essencial inclui 1 tela simultânea; os planos Trimestral e Anual incluem 2 telas — perfeito para assistir o jogo na sala e o filme no quarto.":"The Essential plan includes 1 simultaneous screen; the Quarterly and Yearly plans include 2 — perfect for the match in the living room and a movie in the bedroom.",
+"Quais são as formas de pagamento?":"What payment methods are available?",
+"Aceitamos Pix, cartão de crédito e boleto. A ativação é imediata após a confirmação do pagamento, e o suporte acontece pelo Telegram, 7 dias por semana.":"We accept Pix, credit card and boleto. Activation is immediate after payment confirmation, and support is available on Telegram 7 days a week.",
+/* cta final */
+"Assine a TVCinema e transforme sua sala em um estádio e em uma sala de cinema — hoje mesmo.":"Subscribe to TVCinema and turn your living room into a stadium and a movie theatre — today.",
+"Escolher meu plano":"Choose my plan",
+"Começar grátis":"Start free",
+/* footer */
+"O seu cinema dentro de casa. Plataforma dedicada aos canais de TV ao vivo, esportes, filmes e séries — com qualidade e estabilidade.":"Your cinema at home. A platform dedicated to live TV channels, sports, movies and series — with quality and stability.",
+"Navegação":"Navigation",
+"Conteúdo":"Content",
+"Filmes":"Movies",
+"Séries":"Series",
+"Esportes ao vivo":"Live sports",
+"Contate-nos":"Contact us",
+"Perguntas frequentes":"FAQ",
+"© 2026 TVCinema — Todos os direitos reservados.":"© 2026 TVCinema — All rights reserved.",
+"Feito para quem vive o cinema e o futebol. 🔴⚽":"Made for those who live for cinema and football. 🔴⚽",
+/* modal */
+"Fechar":"Close",
+"Entrar na TVCinema":"Sign in to TVCinema",
+"Acesse sua conta para continuar assistindo.":"Access your account to keep watching.",
+"E-mail":"Email",
+"voce@email.com":"you@email.com",
+"Senha":"Password",
+"Ainda não tem conta?":"Don't have an account yet?",
+"Comece os 7 dias grátis":"Start your 7 free days"
+};
+
+const HEAD_META={
+  pt:{lang:'pt-BR',title:'TVCinema — O cinema inteiro em um só lugar',desc:'Canais ao vivo, futebol, filmes e séries em 4K. Assista quando quiser, de onde estiver. Teste grátis por 7 dias.'},
+  en:{lang:'en',title:'TVCinema — All the cinema in one place',desc:'Live channels, football, movies and series in 4K. Watch whenever you want, wherever you are. Free 7-day trial.'}
+};
+const TEXT_NODES=[],ATTR_NODES=[];
+const has=o=>k=>Object.prototype.hasOwnProperty.call(o,k);
+const inDict=has(DICT);
+
+function collectI18n(){
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
+    const p=n.parentNode;
+    if(!p||p.nodeName==='SCRIPT'||p.nodeName==='STYLE')return NodeFilter.FILTER_REJECT;
+    return n.nodeValue&&n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+  }});
+  let n;while((n=walker.nextNode()))TEXT_NODES.push({node:n,raw:n.nodeValue});
+  document.querySelectorAll('[aria-label],[placeholder],[title]').forEach(el=>{
+    ['aria-label','placeholder','title'].forEach(a=>{
+      if(el.hasAttribute(a))ATTR_NODES.push({el,attr:a,raw:el.getAttribute(a)});
+    });
+  });
+}
+
+function applyLang(lang){
+  LANG=lang;
+  const meta=HEAD_META[lang]||HEAD_META.pt;
+  document.documentElement.lang=meta.lang;
+  document.title=meta.title;
+  const md=document.querySelector('meta[name="description"]');
+  if(md)md.setAttribute('content',meta.desc);
+
+  TEXT_NODES.forEach(({node,raw})=>{
+    if(lang==='pt'){node.nodeValue=raw;return;}
+    const key=raw.trim();
+    if(!inDict(key)){node.nodeValue=raw;return;}
+    const lead=raw.slice(0,raw.indexOf(key));
+    const trail=raw.slice(raw.indexOf(key)+key.length);
+    node.nodeValue=lead+DICT[key]+trail;
+  });
+  ATTR_NODES.forEach(({el,attr,raw})=>{
+    el.setAttribute(attr,lang==='pt'?raw:(inDict(raw.trim())?DICT[raw.trim()]:raw));
+  });
+  document.querySelectorAll('.lang-switch button').forEach(b=>{
+    const on=b.dataset.lang===lang;
+    b.classList.toggle('on',on);
+    b.setAttribute('aria-pressed',on?'true':'false');
+  });
+  /* dynamic content */
+  syncPlans();
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    el.textContent=(+el.dataset.count).toLocaleString(lang==='en'?'en-US':'pt-BR');
+  });
+  dots.forEach((d,k)=>d.setAttribute('aria-label',(lang==='en'?'Testimonial ':'Depoimento ')+(k+1)));
+  renderSummary();syncAuthUI();
+  try{localStorage.setItem('tvcLang',lang);}catch(e){}
+}
+
+document.querySelectorAll('.lang-switch button').forEach(b=>{
+  b.addEventListener('click',()=>applyLang(b.dataset.lang));
+});
+
+/* ==========================================================
+   Auth + Checkout (demo)
+   ========================================================== */
+let authed=false;try{authed=localStorage.getItem('tvcAuth')==='1';}catch(e){}
+let pendingPlan=null,userName='';
+const CK=document.getElementById('checkout');
+/* 结账摘要：周期与价格全部来自当前 CYCLE，与卡片完全同源 */
+function ckPlanData(key){
+  const q=planQuote(key),en=LANG==='en',P=q.P,C=q.C;
+  return {
+    name:(PLAN_NAMES[key]||PLAN_NAMES.cin)[LANG],
+    sub:monthsLabel(C.months,LANG)+' · '+(en?P.screens.en:P.screens.pt)+' · '+P.quality+(P.kids?' + KIDS':''),
+    list:q.list,
+    total:q.total,
+    disc:C.disc,
+    note:billingNote(q,LANG)
+  };
+}
+let ckPlan='cin',ckCoupon=0;
+const fmt=v=>{
+  if(document.getElementById('ckCur').value==='USD')return 'US$ '+(v*0.19/100).toFixed(2);
+  return 'R$ '+(v/100).toFixed(2).replace('.',',');
+};
+function renderSummary(){
+  const P=ckPlanData(ckPlan);
+  document.getElementById('ckPlanName').textContent=P.name;
+  document.getElementById('ckPlanSub').textContent=P.sub;
+  document.getElementById('ckPrice').textContent=fmt(P.list);
+  const dr=document.getElementById('ckDiscRow');
+  dr.hidden=!P.disc;
+  if(P.disc){
+    document.getElementById('ckDiscPct').textContent='(-'+P.disc+'%)';
+    document.getElementById('ckDisc').textContent='-'+fmt(P.list-P.total);
+  }
+  const cr=document.getElementById('ckCoupRow');
+  cr.hidden=!ckCoupon;
+  let total=P.total;
+  if(ckCoupon){
+    const cv=Math.round(P.total*ckCoupon/100);
+    document.getElementById('ckCoupPct').textContent='(-'+ckCoupon+'%)';
+    document.getElementById('ckCoup').textContent='-'+fmt(cv);
+    total-=cv;
+  }
+  document.getElementById('ckTotal').textContent=fmt(total);
+  document.getElementById('ckNote').textContent=P.note;
+}
+function ckGo(step){
+  document.getElementById('ckStep1').classList.toggle('on',step===1);
+  document.getElementById('ckStep2').classList.toggle('on',step===2);
+  document.getElementById('ckDone').classList.toggle('on',step===3);
+  const l1=document.getElementById('ckLi1'),l2=document.getElementById('ckLi2');
+  l1.classList.toggle('on',step===1);l1.classList.toggle('done',step>1);
+  l2.classList.toggle('on',step===2);l2.classList.toggle('done',step===3);
+  CK.scrollTop=0;
+}
+function openCheckout(plan){
+  ckPlan=plan;ckCoupon=0;
+  document.getElementById('ckCode').value='';
+  const msg=document.getElementById('ckMsg');msg.textContent='';msg.className='ck-msg';
+  renderSummary();ckGo(1);
+  CK.classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('ckClose').focus();
+}
+function closeCheckout(){
+  CK.classList.remove('open');
+  document.body.style.overflow='';
+  ckGo(1);
+}
+function syncAuthUI(){
+  document.querySelectorAll('[data-login]').forEach(b=>{
+    if(authed){b.textContent='✓ '+userName+(LANG==='en'?' · Log out':' · Sair');return;}
+    b.textContent=b.classList.contains('btn-sm')?(LANG==='en'?'Sign in':'Entrar'):(LANG==='en'?'Sign in to my account':'Entrar na minha conta');
+  });
+}
+/* plan CTAs */
+document.querySelectorAll('[data-checkout]').forEach(b=>b.addEventListener('click',()=>{
+  if(!authed){pendingPlan=b.dataset.checkout;openModal();return;}
+  openCheckout(b.dataset.checkout);
+}));
+/* steps & close */
+document.getElementById('ckToStep2').addEventListener('click',()=>ckGo(2));
+document.getElementById('ckBack').addEventListener('click',()=>ckGo(1));
+document.getElementById('ckClose').addEventListener('click',closeCheckout);
+CK.querySelectorAll('[data-ckclose]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();closeCheckout();}));
+/* payment method cards */
+document.querySelectorAll('.pm input').forEach(r=>r.addEventListener('change',()=>{
+  document.querySelectorAll('.pm').forEach(l=>l.classList.toggle('on',l.querySelector('input').checked));
+}));
+/* currency */
+document.getElementById('ckCur').addEventListener('change',renderSummary);
+/* coupon */
+document.getElementById('ckApply').addEventListener('click',()=>{
+  const code=document.getElementById('ckCode').value.trim().toUpperCase();
+  const msg=document.getElementById('ckMsg');
+  if(code==='TVCINEMA10'){ckCoupon=10;renderSummary();msg.textContent=LANG==='en'?'Coupon applied: -10%':'Cupom aplicado: -10%';msg.className='ck-msg ok';}
+  else{ckCoupon=0;renderSummary();msg.textContent=LANG==='en'?'Invalid coupon':'Cupom inválido';msg.className='ck-msg err';}
+});
+/* input masks */
+const onlyD=s=>s.replace(/\D/g,'');
+function maskCPF(d){d=d.slice(0,11);let o=d;
+  if(d.length>3)o=d.slice(0,3)+'.'+d.slice(3);
+  if(d.length>6)o=o.slice(0,7)+'.'+o.slice(7);
+  if(d.length>9)o=o.slice(0,11)+'-'+o.slice(11);
+  return o;}
+function maskCNPJ(d){d=d.slice(0,14);let o=d;
+  if(d.length>2)o=d.slice(0,2)+'.'+d.slice(2);
+  if(d.length>5)o=o.slice(0,6)+'.'+o.slice(6);
+  if(d.length>8)o=o.slice(0,10)+'/'+o.slice(10);
+  if(d.length>12)o=o.slice(0,15)+'-'+o.slice(15);
+  return o;}
+function syncIdMask(){
+  const el=document.getElementById('ckIdNum');
+  const cnpj=document.querySelector('input[name=idtype]:checked').value==='CNPJ';
+  const d=onlyD(el.value);
+  el.value=cnpj?maskCNPJ(d):maskCPF(d);
+  el.placeholder=cnpj?'xx.xxx.xxx/xxxx-xx':'xxx.xxx.xxx-xx';
+}
+document.getElementById('ckIdNum').addEventListener('input',syncIdMask);
+document.querySelectorAll('input[name=idtype]').forEach(r=>r.addEventListener('change',syncIdMask));
+document.getElementById('ckPhone').addEventListener('input',e=>{
+  const d=onlyD(e.target.value).slice(0,11);
+  if(d.length<=2){e.target.value=d;return;}
+  const rest=d.slice(2),a=rest.length>8?5:4;
+  e.target.value=rest.length<=a?'('+d.slice(0,2)+') '+rest:'('+d.slice(0,2)+') '+rest.slice(0,a)+'-'+rest.slice(a);
+});
+document.getElementById('ckZip').addEventListener('input',e=>{
+  const d=onlyD(e.target.value).slice(0,8);
+  e.target.value=d.length>5?d.slice(0,5)+'-'+d.slice(5):d;
+});
+/* submit → success */
+document.getElementById('ckForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!e.target.checkValidity()){e.target.reportValidity();return;}
+  ckGo(3);
+});
+syncAuthUI();
+
+collectI18n();
+let savedLang='pt';
+try{savedLang=localStorage.getItem('tvcLang')||'pt';}catch(e){}
+if(/[?&]lang=en/.test(location.search))savedLang='en';
+if(savedLang==='en')applyLang('en');
+syncPlans();
+</script>
+</body>
+</html>
