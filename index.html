@@ -344,59 +344,6 @@ header.scrolled{
 .tab-panel.on{display:grid}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* ============ Planos ============ */
-#planos{position:relative}
-.plans-toggle{
-  display:inline-flex;background:rgba(0,0,0,.3);border:1px solid var(--line);
-  border-radius:999px;padding:5px;gap:4px;margin:0 auto 46px;
-}
-.pt{
-  padding:9px 24px;border-radius:999px;font-weight:700;font-size:14px;color:var(--text-2);
-  transition:.25s var(--ease);
-}
-.pt.on{background:linear-gradient(135deg,#e33135,#8f1418);color:#fff;box-shadow:0 6px 18px -6px rgba(212,35,43,.5)}
-.pt .save{font-size:10.5px;font-weight:800;color:var(--amber-2);margin-left:5px}
-.pt.on .save{color:#ffe6ad}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-.plan{
-  position:relative;padding:36px 30px;border-radius:20px;
-  background:linear-gradient(170deg,var(--card) 0%,var(--bg-2) 100%);
-  border:1px solid var(--line);display:flex;flex-direction:column;
-  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;
-}
-.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}
-.plan.best{
-  border:1.5px solid rgba(242,179,61,.55);
-  background:linear-gradient(170deg,#4a0b0e 0%,#2b0508 100%);
-  box-shadow:0 30px 70px -20px rgba(0,0,0,.6),0 0 60px -18px rgba(242,179,61,.28);
-}
-.plan-flag{
-  position:absolute;top:-15px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--amber),#e89a1f);color:#2a1200;
-  font-size:11.5px;font-weight:800;letter-spacing:.06em;padding:7px 18px;border-radius:999px;
-  box-shadow:0 10px 26px -8px rgba(242,179,61,.55);white-space:nowrap;
-}
-.plan .p-name{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
-.plan .p-price{display:flex;align-items:baseline;gap:8px;margin:16px 0 4px}
-.plan .p-price b{font-size:44px;font-weight:800;letter-spacing:-.03em}
-.plan .p-price span{color:var(--text-3);font-size:14px;font-weight:600}
-.plan .p-total{font-size:12.5px;color:var(--text-3);margin-bottom:22px}
-.plan .p-days{
-  display:inline-flex;align-self:flex-start;align-items:center;gap:8px;
-  font-size:12.5px;font-weight:700;color:var(--amber-2);
-  background:rgba(242,179,61,.10);border:1px solid rgba(242,179,61,.3);
-  padding:6px 13px;border-radius:999px;margin-bottom:22px;
-}
-.plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:30px}
-.plan li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2)}
-.plan li svg{flex:none;margin-top:3px}
-.plan .btn{margin-top:auto;width:100%}
-.promo-note{
-  display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
-  margin-top:30px;color:var(--text-3);font-size:13.5px;
-}
-.promo-note b{color:var(--amber-2)}
-
 /* ============ Trial / CTA banner ============ */
 .banner{
   position:relative;border-radius:24px;overflow:hidden;padding:64px 56px;
@@ -502,158 +449,7 @@ footer{border-top:1px solid var(--line);background:rgba(0,0,0,.28);padding:64px 
 }
 .tg-pill:hover{border-color:#7ee8fa;transform:translateY(-2px)}
 
-/* ============ Modal ============ */
-.modal-mask{
-  position:fixed;inset:0;z-index:200;background:rgba(10,1,2,.72);
-  backdrop-filter:blur(8px);display:none;place-items:center;padding:20px;
-}
-.modal-mask.open{display:grid}
-.modal{
-  width:min(420px,100%);border-radius:22px;padding:38px 34px;
-  background:linear-gradient(170deg,#3f090d,#240407);
-  border:1px solid var(--line-strong);box-shadow:var(--shadow-2);
-  animation:fadeUp .35s var(--ease);position:relative;
-}
-.modal h3{font-size:22px;font-weight:800;margin-bottom:6px}
-.modal>p{color:var(--text-2);font-size:14px;margin-bottom:24px}
-.modal .close{
-  position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;
-  display:grid;place-items:center;border:1px solid var(--line);color:var(--text-2);
-}
-.modal .close:hover{color:var(--ink);border-color:var(--line-strong)}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:12.5px;font-weight:700;color:var(--text-3);margin-bottom:7px}
-.field input{
-  width:100%;padding:13px 16px;border-radius:12px;font:inherit;font-size:14.5px;
-  background:rgba(0,0,0,.3);border:1px solid var(--line-strong);color:var(--ink);
-  transition:border-color .2s,box-shadow .2s;
-}
-.field input:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,179,61,.15)}
-.modal .btn{width:100%;margin-top:8px}
-.modal .alt{text-align:center;font-size:13px;color:var(--text-3);margin-top:18px}
-.modal .alt a{color:var(--amber-2);font-weight:700}
-
-/* ============ Checkout ============ */
-.ck-mask{position:fixed;inset:0;z-index:300;background:rgba(8,1,2,.88);backdrop-filter:blur(10px);display:none;overflow:auto}
-.ck-mask.open{display:block}
-.ck-wrap{max-width:1120px;margin:0 auto;padding:20px 24px 70px}
-.ck-top{
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
-  padding:12px 0 22px;position:sticky;top:0;z-index:5;
-  background:linear-gradient(180deg,var(--bg-0) 62%,transparent);
-}
-.ck-steps{display:flex;align-items:center;list-style:none;margin:0;padding:0;gap:4px}
-.ck-steps li{display:flex;align-items:center;gap:9px;color:var(--text-3);font-size:14px;font-weight:600;white-space:nowrap}
-.ck-steps li+li::before{content:'›';margin:0 10px;color:var(--text-3);font-size:17px;font-weight:400}
-.ck-steps li span{
-  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;
-  border:1px solid var(--line-strong);color:var(--text-2);flex:none;
-}
-.ck-steps li.on{color:var(--amber)}
-.ck-steps li.on span{background:var(--amber);border-color:var(--amber);color:#2b0607;font-weight:800}
-.ck-steps li.done{color:var(--ink)}
-.ck-steps li.done span{border-color:var(--amber);color:var(--amber)}
-.ck-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;align-items:start}
-.ck-card{
-  background:linear-gradient(170deg,#2c0608,#1c0304);border:1px solid var(--line-strong);
-  border-radius:20px;padding:30px 30px 34px;
-}
-.ck-card h2{font-size:20px;font-weight:800;margin-bottom:22px}
-.ck-step{display:none;padding:0}
-.ck-step.on{display:block;animation:fadeUp .3s var(--ease)}
-.ck-back{
-  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;
-  border:1px solid var(--line-strong);color:var(--text-2);cursor:pointer;background:rgba(0,0,0,.25);
-}
-.ck-back:hover{color:var(--ink);border-color:var(--amber)}
-.ck-card select{
-  width:100%;padding:13px 16px;border-radius:12px;font:inherit;font-size:14.5px;
-  background:rgba(0,0,0,.3);border:1px solid var(--line-strong);color:var(--ink);cursor:pointer;
-}
-.ck-card select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,179,61,.15)}
-.pm-row{display:flex;gap:12px;flex-wrap:wrap}
-.pm{
-  display:flex;align-items:center;gap:10px;padding:13px 18px;cursor:pointer;
-  border:1px solid var(--line-strong);border-radius:12px;background:rgba(0,0,0,.3);
-  font-size:13px;font-weight:800;letter-spacing:.05em;transition:border-color .2s,box-shadow .2s;
-}
-.pm input{accent-color:var(--amber);width:15px;height:15px}
-.pm.on{border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,179,61,.15)}
-.pm-brand{
-  margin-top:14px;display:inline-flex;align-items:center;gap:9px;padding:10px 16px;
-  border:1px solid var(--amber);border-radius:12px;background:#fff;
-}
-.pm-brand b{color:#1a1a1a;font-size:15px;letter-spacing:-.02em}
-.ck-cta{width:100%;margin-top:26px}
-.ck-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
-.ck-form-grid .field{grid-column:span 1}
-.ck-form-grid .full{grid-column:1/-1}
-.radio-inline{
-  display:flex;align-items:center;gap:18px;padding:12.5px 16px;border-radius:12px;
-  border:1px solid var(--line-strong);background:rgba(0,0,0,.3);flex-wrap:wrap;
-}
-.radio-inline label{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--text-2)}
-.radio-inline input{accent-color:var(--amber);width:14px;height:14px}
-.phone-row{display:grid;grid-template-columns:120px 1fr;gap:12px}
-.ck-side{position:sticky;top:98px}
-.ck-summary{
-  background:linear-gradient(170deg,#2c0608,#1c0304);border:1px solid var(--line-strong);
-  border-radius:20px;padding:26px 26px 28px;
-}
-.ck-summary h3{font-size:20px;font-weight:800}
-.ck-sub{color:var(--text-3);font-size:13px;margin:4px 0 18px}
-.ck-summary dl{margin:0}
-.ck-summary dl>div[hidden]{display:none}
-.ck-summary dl>div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;font-size:14px;color:var(--text-2)}
-.ck-summary dt{margin:0}
-.ck-summary dt em{font-style:normal;color:var(--text-3)}
-.ck-summary dd{margin:0;font-variant-numeric:tabular-nums}
-.ck-summary .neg{color:#5fbf77}
-.ck-summary .tot{border-top:1px solid var(--line-strong);margin-top:8px;padding-top:15px;font-size:15px;color:var(--ink);font-weight:700}
-.ck-summary .tot dd{color:var(--amber);font-weight:800;font-size:21px}
-.ck-note{font-size:12.5px;color:var(--text-3);margin-top:10px}
-.ck-coupon{display:flex;gap:10px;margin-top:18px}
-.ck-coupon input{
-  flex:1;min-width:0;padding:11px 14px;border-radius:11px;font:inherit;font-size:13.5px;
-  background:rgba(0,0,0,.3);border:1px solid var(--line-strong);color:var(--ink);
-}
-.ck-coupon input:focus{outline:none;border-color:var(--amber)}
-.ck-coupon .btn{padding:11px 16px;font-size:13px}
-.ck-msg{font-size:12.5px;margin-top:10px;min-height:17px}
-.ck-msg.ok{color:#5fbf77}.ck-msg.err{color:#ff8d7a}
-.ck-done{text-align:center;padding:60px 20px}
-.ck-done .big-check{
-  width:76px;height:76px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;
-  background:rgba(95,191,119,.12);border:1px solid #5fbf77;
-}
-.ck-done h2{font-size:24px;font-weight:800;margin-bottom:10px}
-.ck-done p{color:var(--text-2);font-size:14.5px;max-width:420px;margin:0 auto 28px}
-@media (max-width:640px){
-  .ck-wrap{padding:14px 16px 50px}
-  .ck-top{padding:10px 0 16px}
-  .ck-close-btn{position:absolute;top:16px;right:16px}
-  .ck-steps li{font-size:11.5px}
-  .ck-steps li span{width:19px;height:19px;font-size:10.5px}
-  .ck-steps li+li::before{margin:0 5px}
-  .ck-card{padding:22px 20px 26px}
-  .ck-summary{padding:22px 20px 24px}
-}
-@media (max-width:920px){
-  .ck-grid{grid-template-columns:1fr}
-  .ck-side{position:static;order:-1}
-  .ck-steps li{font-size:12.5px}
-  .ck-steps li+li::before{margin:0 6px}
-  .ck-form-grid{grid-template-columns:1fr}
-  .phone-row{grid-template-columns:1fr}
-  .ck-top{flex-wrap:wrap}
-}
-
-.ck-close-btn{
-  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
-  border:1px solid var(--line-strong);color:var(--text-2);cursor:pointer;background:rgba(0,0,0,.3);
-}
-.ck-close-btn:hover{color:var(--ink);border-color:var(--amber)}
-
+/* ============ Reveal ============ */
 /* ============ Reveal ============ */
 html.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 html.js .reveal.in{opacity:1;transform:none}
@@ -666,8 +462,6 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
   .hero{padding-top:140px}
   .feat-grid{grid-template-columns:repeat(2,1fr)}
   .poster-grid{grid-template-columns:repeat(4,1fr)}
-  .plans{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
-  .plan.best{order:-1}
   .dev-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
@@ -676,12 +470,8 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
 @media (max-width:640px){
   section{padding:70px 0}
   .nav-cta{gap:8px}
-  .nav-cta .btn-ghost[data-login]{display:none}
   .lang-switch button{padding:5px 8px;font-size:11px}
-  .nav-cta .btn-red{padding:10px 16px;font-size:13.5px}
-  .plans-toggle{max-width:100%}
-  .pt{padding:9px 14px;font-size:13px}
-  .pt .save{margin-left:3px}
+  .nav-cta .btn-amber{padding:10px 16px;font-size:13.5px}
   .feat-grid{grid-template-columns:1fr}
   .poster-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .dev-grid{grid-template-columns:1fr 1fr;gap:12px}
@@ -694,7 +484,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
   .float-card{display:none}
 }
 @media (max-width:440px){
-  .nav-cta .btn-red{display:none}
+  .nav-cta .btn-amber{display:none}
   .brand-name{font-size:17px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -716,7 +506,6 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
     </a>
     <nav class="nav-links" aria-label="Navegação principal">
       <a href="#inicio" class="active">Início</a>
-      <a href="#planos">Planos</a>
       <a href="#recursos">Recursos</a>
       <a href="#catalogo">Catálogo</a>
       <a href="#dispositivos">Download</a>
@@ -727,8 +516,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <button class="btn btn-ghost btn-sm" data-login>Entrar</button>
-      <a class="btn btn-red btn-sm" href="#planos">Assinar</a>
+      <a class="btn btn-amber btn-sm" href="#dispositivos">Baixar app</a>
       <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -737,12 +525,10 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#inicio">Início</a>
-  <a href="#planos">Planos</a>
   <a href="#recursos">Recursos</a>
   <a href="#catalogo">Catálogo</a>
   <a href="#dispositivos">Download</a>
   <a href="#faq">FAQ</a>
-  <button class="btn btn-amber" data-login>Entrar na minha conta</button>
   <div class="lang-switch" role="group" aria-label="Idioma / Language" style="margin-top:16px">
     <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -758,11 +544,11 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
       <h1>O cinema inteiro<br>em <em>um só lugar</em>.</h1>
       <p class="lead">Com a TVCinema você acompanha os principais jogos brasileiros e o melhor do futebol mundial, além dos seus canais, filmes e séries favoritos. Assista quando quiser, de onde estiver.</p>
       <div class="hero-actions">
-        <a class="btn btn-amber" href="#planos">
-          Assinar agora
+        <a class="btn btn-amber" href="#dispositivos">
+          Baixar aplicativo
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn-ghost" href="#teste">Testar 7 dias grátis</a>
+        <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
       </div>
       <div class="hero-stats" role="list">
         <div class="stat" role="listitem"><b><em data-count="1000">0</em>+</b><span>Canais</span></div>
@@ -811,71 +597,6 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
     <div class="mq-item"><b>LIVE</b><span class="sep"></span><b>MATCH</b><span class="sep"></span><b>FEATURED</b><span class="sep"></span><b>MOVIE</b><span class="sep"></span><b>SERIES</b><span class="sep"></span><b>KIDS</b><span class="sep"></span></div>
   </div>
 </div>
-
-<!-- ================= PLANOS ================= -->
-<section id="planos">
-  <div class="container">
-    <div class="sec-head center reveal">
-      <span class="eyebrow"><span class="dot"></span>Planos disponíveis</span>
-      <h2>A emoção do cinema começa aqui</h2>
-      <p>Assine a TVCinema e transforme sua casa em uma experiência completa de entretenimento — em um único passo, sem complicações.</p>
-    </div>
-    <div class="center reveal" style="text-align:center">
-      <div class="plans-toggle" role="tablist" aria-label="Ciclo de cobrança">
-        <button class="pt" data-cycle="m">Mensal</button>
-        <button class="pt on" data-cycle="t">Trimestral<span class="save">-27%</span></button>
-        <button class="pt" data-cycle="a">Anual<span class="save">-50%</span></button>
-      </div>
-    </div>
-    <div class="plans">
-      <article class="plan reveal" data-plan="ess">
-        <span class="p-name">Essencial</span>
-        <div class="p-price"><b>R$ 14,53</b><span>/mês</span></div>
-        <span class="p-total">cobrança trimestral de R$ 43,59</span>
-        <span class="p-days">⏱ 3 meses de acesso</span>
-        <ul>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Canais ao vivo + catálogo completo</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte 7 dias por semana</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Acesso mobile</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>1 tela simultânea</li>
-        </ul>
-        <button class="btn btn-ghost" type="button" data-checkout="ess">Escolher plano</button>
-      </article>
-
-      <article class="plan best reveal d1" data-plan="cin">
-        <span class="plan-flag">Melhor custo-benefício</span>
-        <span class="p-name">Cinema+</span>
-        <div class="p-price"><b>R$ 21,83</b><span>/mês</span></div>
-        <span class="p-total" data-total="a">cobrança trimestral de R$ 65,49</span>
-        <span class="p-days">⏱ 3 meses de acesso</span>
-        <ul>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tudo do Essencial</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Qualidade 4K HDR</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>2 telas simultâneas</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Perfil KIDS com controle parental</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte prioritário no Telegram</li>
-        </ul>
-        <button class="btn btn-amber" type="button" data-checkout="cin">Escolher plano</button>
-      </article>
-
-      <article class="plan reveal d2" data-plan="fam">
-        <span class="p-name">Família</span>
-        <div class="p-price"><b>R$ 29,13</b><span>/mês</span></div>
-        <span class="p-total" data-total="t">cobrança trimestral de R$ 87,39</span>
-        <span class="p-days">⏱ 3 meses de acesso</span>
-        <ul>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tudo do Cinema+</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Qualidade 4K HDR</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>4 telas simultâneas</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Perfil KIDS com controle parental</li>
-          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#5fbf77" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Suporte prioritário no Telegram</li>
-        </ul>
-        <button class="btn btn-ghost" type="button" data-checkout="fam">Escolher plano</button>
-      </article>
-    </div>
-    <p class="promo-note reveal">💳 Pix, cartão de crédito e boleto · 🔒 Pagamento seguro · <b>Edição de lançamento: primeiros 7 dias grátis em qualquer plano</b></p>
-  </div>
-</section>
 
 <!-- ================= RECURSOS ================= -->
 <section id="recursos">
@@ -968,13 +689,12 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
   <div class="container">
     <div class="banner reveal">
       <div>
-        <span class="eyebrow" style="margin-bottom:14px"><span class="dot"></span>Teste grátis</span>
+        <span class="eyebrow" style="margin-bottom:14px"><span class="dot"></span>Comece agora</span>
         <h2>Experimente por 7 dias</h2>
-        <p>Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso. Se gostar, escolha seu plano.</p>
+        <p>Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso.</p>
       </div>
       <div class="btns">
         <a class="btn btn-amber" href="#dispositivos">Baixar aplicativo</a>
-        <button class="btn btn-ghost" data-login>Criar conta grátis</button>
       </div>
     </div>
   </div>
@@ -1070,31 +790,25 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <button class="faq-q" aria-expanded="false">Em quais dispositivos funciona?
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><p>Android TV, TV Box, TV Stick e celulares Android. O aplicativo é leve e a configuração leva poucos minutos — basta fazer o download, entrar com sua conta e começar a assistir.</p></div>
+        <div class="faq-a"><p>Android TV, TV Box, TV Stick e celulares Android. O aplicativo é leve e a configuração leva poucos minutos — basta fazer o download e começar a assistir.</p></div>
       </div>
       <div class="faq">
         <button class="faq-q" aria-expanded="false">Existe período de teste grátis?
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><p>Sim! Todos os novos cadastros têm 7 dias de teste gratuito, sem interrupções e sem compromisso. Você só assina se gostar da experiência.</p></div>
+        <div class="faq-a"><p>Sim! Baixe o aplicativo e experimente 7 dias de teste gratuito, sem interrupções e sem compromisso.</p></div>
       </div>
       <div class="faq">
         <button class="faq-q" aria-expanded="false">Qual a qualidade da transmissão?
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><p>Transmitimos em HD e 4K HDR (nos planos elegíveis), com servidores otimizados para estabilidade mesmo em horários de pico, como finais de campeonato.</p></div>
+        <div class="faq-a"><p>Transmitimos em HD e 4K HDR, com servidores otimizados para estabilidade mesmo em horários de pico, como finais de campeonato.</p></div>
       </div>
       <div class="faq">
-        <button class="faq-q" aria-expanded="false">Quantas telas posso usar ao mesmo tempo?
+        <button class="faq-q" aria-expanded="false">Como falo com o suporte?
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><p>O plano Essencial inclui 1 tela simultânea; os planos Trimestral e Anual incluem 2 telas — perfeito para assistir o jogo na sala e o filme no quarto.</p></div>
-      </div>
-      <div class="faq">
-        <button class="faq-q" aria-expanded="false">Quais são as formas de pagamento?
-          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>
-        </button>
-        <div class="faq-a"><p>Aceitamos Pix, cartão de crédito e boleto. A ativação é imediata após a confirmação do pagamento, e o suporte acontece pelo Telegram, 7 dias por semana.</p></div>
+        <div class="faq-a"><p>O suporte acontece pelo Telegram (@tvcinemabot), 7 dias por semana — incluindo ajuda com instalação e configuração nos seus aparelhos.</p></div>
       </div>
     </div>
   </div>
@@ -1106,11 +820,11 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
     <div class="banner reveal" style="justify-content:center;text-align:center">
       <div style="margin-inline:auto">
         <h2>A emoção do cinema começa aqui</h2>
-        <p style="margin-inline:auto">Assine a TVCinema e transforme sua sala em um estádio e em uma sala de cinema — hoje mesmo.</p>
+        <p style="margin-inline:auto">Baixe a TVCinema e transforme sua sala em um estádio e em uma sala de cinema — hoje mesmo.</p>
       </div>
       <div class="btns" style="justify-content:center;width:100%">
-        <a class="btn btn-amber" href="#planos">Escolher meu plano</a>
-        <a class="btn btn-ghost" href="#teste">Começar grátis</a>
+        <a class="btn btn-amber" href="#dispositivos">Baixar aplicativo</a>
+        <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
       </div>
     </div>
   </div>
@@ -1137,7 +851,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <a href="#inicio">Início</a>
         <a href="#recursos">Recursos</a>
         <a href="#catalogo">Catálogo</a>
-        <a href="#planos">Planos</a>
+        <a href="#dispositivos">Download</a>
       </div>
       <div class="foot-col">
         <h4>Conteúdo</h4>
@@ -1162,190 +876,6 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
     </div>
   </div>
 </footer>
-
-<!-- ================= CHECKOUT ================= -->
-<div class="ck-mask" id="checkout" role="dialog" aria-modal="true" aria-labelledby="ckTitle">
-  <div class="ck-wrap">
-    <header class="ck-top">
-      <a class="brand" href="#inicio" data-ckclose aria-label="TVCinema — início">
-        <span class="brand-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="#fff"/></svg>
-        </span>
-        <span class="brand-name">TV<span>Cinema</span></span>
-      </a>
-      <ol class="ck-steps" id="ckSteps">
-        <li class="on" id="ckLi1"><span>1</span>Método de pagamento</li>
-        <li id="ckLi2"><span>2</span>Detalhes de pagamento</li>
-      </ol>
-      <button class="ck-close-btn" id="ckClose" aria-label="Fechar checkout">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-      </button>
-    </header>
-
-    <div class="ck-grid">
-      <div class="ck-main">
-        <!-- Passo 1: método de pagamento -->
-        <section class="ck-step on" id="ckStep1" aria-label="Passo 1">
-          <div class="ck-card">
-            <h2 id="ckTitle">Método de pagamento</h2>
-            <div class="field">
-              <label for="ckCur">Moeda:</label>
-              <select id="ckCur">
-                <option value="BRL" selected>BRL</option>
-                <option value="USD">USD</option>
-              </select>
-            </div>
-            <div class="field">
-              <label id="ckPmLabel">Método de pagamento:</label>
-              <div class="pm-row" role="radiogroup" aria-labelledby="ckPmLabel">
-                <label class="pm on">
-                  <input type="radio" name="pm" value="pix" checked>
-                  <b>PIX</b>
-                </label>
-                <label class="pm">
-                  <input type="radio" name="pm" value="gp">
-                  <b>GLOBAL PAY</b>
-                </label>
-              </div>
-              <div class="pm-brand" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.6 15.2 5.8 12.9 8.1a1.6 1.6 0 0 1-1.8 0L8.8 5.8 12 2.6Z" fill="#32BCAD"/><path d="m5.8 8.8 2.3 2.3a1.6 1.6 0 0 1 0 1.8L5.8 15.2 2.6 12l3.2-3.2Z" fill="#32BCAD"/><path d="M18.2 8.8 21.4 12l-3.2 3.2-2.3-2.3a1.6 1.6 0 0 1 0-1.8l2.3-2.3Z" fill="#32BCAD"/><path d="m8.8 18.2 2.3-2.3a1.6 1.6 0 0 1 1.8 0l2.3 2.3L12 21.4l-3.2-3.2Z" fill="#32BCAD"/><path d="M12 8.9a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2Z" fill="#32BCAD"/></svg>
-                <b>pix</b>
-              </div>
-            </div>
-            <button class="btn btn-amber ck-cta" id="ckToStep2">Continuar para o pagamento</button>
-          </div>
-        </section>
-
-        <!-- Passo 2: detalhes de pagamento -->
-        <section class="ck-step" id="ckStep2" aria-label="Passo 2">
-          <button class="ck-back" id="ckBack" aria-label="Voltar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="ck-card">
-            <h2>Detalhes de pagamento</h2>
-            <form id="ckForm" novalidate>
-              <div class="ck-form-grid">
-                <div class="field">
-                  <label for="ckFn">Primeiro nome:</label>
-                  <input id="ckFn" autocomplete="given-name" placeholder="Primeiro nome" required>
-                </div>
-                <div class="field">
-                  <label for="ckLn">Sobrenome:</label>
-                  <input id="ckLn" autocomplete="family-name" placeholder="Sobrenome" required>
-                </div>
-                <div class="field">
-                  <label id="ckIdLabel">Tipo de ID:</label>
-                  <div class="radio-inline" role="radiogroup" aria-labelledby="ckIdLabel">
-                    <label><input type="radio" name="idtype" value="CPF" checked>CPF</label>
-                    <label><input type="radio" name="idtype" value="CNPJ">CNPJ</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <label for="ckIdNum">Número do ID:</label>
-                  <input id="ckIdNum" inputmode="numeric" placeholder="xxx.xxx.xxx-xx" required>
-                </div>
-                <div class="field full">
-                  <label for="ckPhone">Telefone:</label>
-                  <div class="phone-row">
-                    <select id="ckDdi" aria-label="Código do país">
-                      <option value="+55" selected>🇧🇷 +55</option>
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+351">🇵🇹 +351</option>
-                      <option value="+44">🇬🇧 +44</option>
-                    </select>
-                    <input id="ckPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Telefone" required>
-                  </div>
-                </div>
-                <div class="field">
-                  <label for="ckUf">Estado (UF):</label>
-                  <select id="ckUf" required>
-                    <option value="" selected disabled>Estado (UF)</option>
-                    <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="ckCity">Cidade</label>
-                  <input id="ckCity" placeholder="Cidade" required>
-                </div>
-                <div class="field">
-                  <label for="ckHood">Bairro</label>
-                  <input id="ckHood" placeholder="Bairro" required>
-                </div>
-                <div class="field">
-                  <label for="ckNum">Número</label>
-                  <input id="ckNum" placeholder="Número" required>
-                </div>
-                <div class="field">
-                  <label for="ckAddr">Endereço completo</label>
-                  <input id="ckAddr" autocomplete="street-address" placeholder="Endereço completo" required>
-                </div>
-                <div class="field">
-                  <label for="ckZip">CEP</label>
-                  <input id="ckZip" inputmode="numeric" placeholder="xxxxx-xxx" required>
-                </div>
-              </div>
-              <button class="btn btn-amber ck-cta" type="submit">Confirmar pagamento</button>
-            </form>
-          </div>
-        </section>
-
-        <!-- Confirmação -->
-        <section class="ck-step" id="ckDone" aria-label="Confirmação">
-          <div class="ck-card ck-done">
-            <div class="big-check">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m5 13 4.5 4.5L19 7" stroke="#5fbf77" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h2>Pagamento confirmado!</h2>
-            <p>Seu pedido foi registrado. Os dados de acesso chegam ao seu e-mail em instantes. (demonstração)</p>
-            <button class="btn btn-amber" data-ckclose>Voltar ao início</button>
-          </div>
-        </section>
-      </div>
-
-      <aside class="ck-side">
-        <div class="ck-summary" aria-live="polite">
-          <h3 id="ckPlanName">Cinema+</h3>
-          <p class="ck-sub" id="ckPlanSub">12 meses · 2 telas · 4K HDR + KIDS</p>
-          <dl>
-            <div><dt>Preço</dt><dd id="ckPrice">R$ 19,90</dd></div>
-            <div id="ckDiscRow"><dt>Desconto <em id="ckDiscPct">(-50%)</em></dt><dd class="neg" id="ckDisc">-R$ 10,00</dd></div>
-            <div id="ckCoupRow" hidden><dt>Cupom <em id="ckCoupPct">(-10%)</em></dt><dd class="neg" id="ckCoup">-R$ 0,99</dd></div>
-            <div class="tot"><dt>Total:</dt><dd id="ckTotal">R$ 9,90</dd></div>
-          </dl>
-          <p class="ck-note" id="ckNote">cobrança anual de R$ 118,80</p>
-          <div class="ck-coupon">
-            <input id="ckCode" placeholder="Código promocional" aria-label="Código promocional">
-            <button class="btn btn-ghost" type="button" id="ckApply">Aplicar</button>
-          </div>
-          <p class="ck-msg" id="ckMsg"></p>
-        </div>
-      </aside>
-    </div>
-  </div>
-</div>
-
-<!-- ================= MODAL LOGIN ================= -->
-<div class="modal-mask" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-  <div class="modal">
-    <button class="close" id="loginClose" aria-label="Fechar">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-    </button>
-    <h3 id="loginTitle">Entrar na TVCinema</h3>
-    <p>Acesse sua conta para continuar assistindo.</p>
-    <form id="loginForm">
-      <div class="field">
-        <label for="email">E-mail</label>
-        <input id="email" type="email" placeholder="voce@email.com" required>
-      </div>
-      <div class="field">
-        <label for="pass">Senha</label>
-        <input id="pass" type="password" placeholder="••••••••" required>
-      </div>
-      <button class="btn btn-amber" type="submit">Entrar</button>
-      <p class="alt">Ainda não tem conta? <a href="#teste" data-closemodal>Comece os 7 dias grátis</a></p>
-    </form>
-  </div>
-</div>
 
 <script>
 /* ---------- Boot: js/no-anim flags ---------- */
@@ -1409,59 +939,7 @@ document.querySelectorAll('.tab').forEach(tab=>{
   });
 });
 
-/* ---------- Planos: ciclo é a única fonte de verdade do período ---------- */
-let CYCLE='t';
-const CYCLES={
-  m:{months:1,disc:0},
-  t:{months:3,disc:27},
-  a:{months:12,disc:50}
-};
-/* preço-base = mensal sem desconto (em centavos) */
-const PLANS={
-  ess:{base:1990,screens:{pt:'1 tela',en:'1 screen'},quality:'Full HD',kids:false},
-  cin:{base:2990,screens:{pt:'2 telas',en:'2 screens'},quality:'4K HDR',kids:true},
-  fam:{base:3990,screens:{pt:'4 telas',en:'4 screens'},quality:'4K HDR',kids:true}
-};
-const PLAN_NAMES={
-  ess:{pt:'Essencial',en:'Essential'},
-  cin:{pt:'Cinema+',en:'Cinema+'},
-  fam:{pt:'Família',en:'Family'}
-};
-const brl=c=>'R$ '+(c/100).toFixed(2).replace('.',',');
-function monthsLabel(n,lang){
-  return lang==='en' ? n+(n===1?' month':' months') : n+(n===1?' mês':' meses');
-}
-/* 报价：月均价按周期折扣，总额 = 月均价 × 月数 —— 全站一致 */
-function planQuote(key){
-  const P=PLANS[key]||PLANS.cin,C=CYCLES[CYCLE];
-  const monthly=Math.round(P.base*(100-C.disc)/100);
-  return {key,P,C,monthly,total:monthly*C.months,list:P.base*C.months};
-}
-function billingNote(q,lang){
-  if(q.C.months===1) return lang==='en'?'billed monthly · no lock-in':'cobrança mensal · sem fidelidade';
-  const t=brl(q.total);
-  if(lang==='en') return (q.C.months===3?'billed quarterly — ':'billed yearly — ')+t;
-  return (q.C.months===3?'cobrança trimestral de ':'cobrança anual de ')+t;
-}
-function syncPlans(){
-  const lang=LANG;
-  document.querySelectorAll('.plan[data-plan]').forEach(card=>{
-    const q=planQuote(card.dataset.plan);
-    card.querySelector('.p-price b').textContent=brl(q.monthly);
-    card.querySelector('.p-total').textContent=billingNote(q,lang);
-    card.querySelector('.p-days').textContent='⏱ '+monthsLabel(q.C.months,lang)+(lang==='en'?' of access':' de acesso');
-  });
-}
-document.querySelectorAll('.pt').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.pt').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-    CYCLE=btn.dataset.cycle;
-    syncPlans();
-  });
-});
-
-/* ---------- Depoimentos carousel ---------- */
+/* ---------- Depoimentos carousel ---------- *//* ---------- Depoimentos carousel ---------- */
 const inner=document.getElementById('tstInner');
 const slides=inner.children.length,dotsBox=document.getElementById('tstDots');
 let idx=0,timer;
@@ -1498,28 +976,6 @@ document.querySelectorAll('.faq').forEach(f=>{
   });
 });
 
-/* ---------- Login modal ---------- */
-const modal=document.getElementById('loginModal');
-const openModal=()=>{modal.classList.add('open');document.getElementById('email').focus();};
-const closeModal=()=>modal.classList.remove('open');
-document.querySelectorAll('[data-login]').forEach(b=>b.addEventListener('click',()=>{
-  mm.classList.remove('open');
-  if(authed){authed=false;try{localStorage.removeItem('tvcAuth');}catch(e){}syncAuthUI();return;}
-  pendingPlan=null;openModal();
-}));
-document.getElementById('loginClose').addEventListener('click',closeModal);
-modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(CK.classList.contains('open'))closeCheckout();else closeModal();}});
-document.querySelectorAll('[data-closemodal]').forEach(a=>a.addEventListener('click',closeModal));
-document.getElementById('loginForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  authed=true;try{localStorage.setItem('tvcAuth','1');}catch(err){}
-  const em=document.getElementById('email').value.split('@')[0].replace(/[._\-+].*$/,'');
-  userName=em?em.charAt(0).toUpperCase()+em.slice(1):'User';
-  closeModal();syncAuthUI();e.target.reset();
-  if(pendingPlan){const p=pendingPlan;pendingPlan=null;openCheckout(p);}
-});
-
 /* ==========================================================
    i18n — PT-BR (default) / EN
    ========================================================== */
@@ -1528,58 +984,14 @@ const DICT={
 "Início":"Home",
 "Recursos":"Features",
 "Catálogo":"Catalog",
-"Planos":"Plans",
 "Download":"Download",
-/* checkout */
-"Método de pagamento":"Payment method",
-"Detalhes de pagamento":"Payment details",
-"Moeda:":"Currency:",
-"Método de pagamento:":"Payment method:",
-"Continuar para o pagamento":"Continue to Payment",
-"Confirmar pagamento":"Confirm payment",
-"Fechar checkout":"Close checkout",
-"Voltar":"Back",
-"Preço":"Price",
-"Desconto":"Discount",
-"Total:":"Total:",
-"Código promocional":"Promo code",
-"Aplicar":"Apply",
-"Primeiro nome:":"First name:",
-"Sobrenome:":"Last name:",
-"Tipo de ID:":"ID type:",
-"Número do ID:":"ID number:",
-"Telefone:":"Phone number:",
-"Estado (UF):":"State (Abbreviation):",
-"Cidade":"City",
-"Bairro":"Neighborhood",
-"Número":"Number",
-"Endereço completo":"Full street address",
-"CEP":"ZIP code",
-"Primeiro nome":"First name",
-"Sobrenome":"Last name",
-"Telefone":"Phone number",
-"Estado (UF)":"State",
-"Código do país":"Country code",
-"Passo 1":"Step 1",
-"Passo 2":"Step 2",
-"Confirmação":"Confirmation",
-"Pagamento confirmado!":"Payment confirmed!",
-"Seu pedido foi registrado. Os dados de acesso chegam ao seu e-mail em instantes. (demonstração)":"Your order has been placed. Your access details will arrive by e-mail shortly. (demo)",
-"Voltar ao início":"Back to home",
-"Entrar":"Sign in",
-"Assinar":"Subscribe",
-"Entrar na minha conta":"Sign in to my account",
-"Navegação principal":"Main navigation",
-"Abrir menu":"Open menu",
-"TVCinema — início":"TVCinema — home",
+/* hero */
 /* hero */
 "Canais, filmes e jogos ao vivo":"Live channels, movies and sports",
 "O cinema inteiro":"All the cinema",
 "em":"in",
 "um só lugar":"one place",
 "Com a TVCinema você acompanha os principais jogos brasileiros e o melhor do futebol mundial, além dos seus canais, filmes e séries favoritos. Assista quando quiser, de onde estiver.":"With TVCinema you follow the biggest Brazilian matches and the best of world football, plus your favourite channels, movies and series. Watch whenever you want, wherever you are.",
-"Assinar agora":"Subscribe now",
-"Testar 7 dias grátis":"Try 7 days free",
 "Canais":"Channels",
 "Filmes & séries":"Movies & series",
 "Qualidade":"Quality",
@@ -1640,46 +1052,17 @@ const DICT={
 "610 títulos":"610 titles",
 "Ficção científica":"Sci-Fi",
 "540 títulos":"540 titles",
-/* planos */
-"Planos disponíveis":"Available plans",
+/* cta / hero */
+"Baixar app":"Get the app",
+"Ver catálogo":"Browse the catalog",
+"Comece agora":"Get started",
 "A emoção do cinema começa aqui":"The thrill of cinema starts here",
-"Assine a TVCinema e transforme sua casa em uma experiência completa de entretenimento — em um único passo, sem complicações.":"Subscribe to TVCinema and turn your home into a complete entertainment experience — in a single step, no hassle.",
-"Ciclo de cobrança":"Billing cycle",
-"Mensal":"Monthly",
-"Trimestral":"Quarterly",
-"Anual":"Yearly",
-"Essencial":"Essential",
-"/mês":"/month",
-"cobrança mensal · sem fidelidade":"billed monthly · no lock-in",
-"⏱ 30 dias de acesso":"⏱ 30 days of access",
-"Canais ao vivo + catálogo completo":"Live channels + full catalog",
-"Suporte 7 dias por semana":"Support 7 days a week",
-"Acesso mobile":"Mobile access",
-"1 tela simultânea":"1 simultaneous screen",
-"Assinar plano":"Choose plan",
-"Escolher plano":"Choose plan",
-"Família":"Family",
-"Tudo do Cinema+":"Everything in Cinema+",
-"4 telas simultâneas":"4 simultaneous screens",
-"Melhor custo-benefício":"Best value",
-"cobrança anual de R$ 118,80":"billed yearly — R$ 118.80",
-"⏱ 365 dias de acesso":"⏱ 365 days of access",
-"Tudo do Essencial":"Everything in Essential",
-"Qualidade 4K HDR":"4K HDR quality",
-"2 telas simultâneas":"2 simultaneous screens",
-"Perfil KIDS com controle parental":"KIDS profile with parental controls",
-"Suporte prioritário no Telegram":"Priority support on Telegram",
-"Assinar anual":"Subscribe yearly",
-"cobrança trimestral de R$ 43,90":"billed quarterly — R$ 43.90",
-"⏱ 90 dias de acesso":"⏱ 90 days of access",
-"💳 Pix, cartão de crédito e boleto · 🔒 Pagamento seguro ·":"💳 Pix, credit card and boleto · 🔒 Secure payment ·",
-"Edição de lançamento: primeiros 7 dias grátis em qualquer plano":"Launch offer: first 7 days free on any plan",
+"Baixe a TVCinema e transforme sua sala em um estádio e em uma sala de cinema — hoje mesmo.":"Download TVCinema and turn your living room into a stadium and a movie theatre — today.",
 /* teste */
 "Teste grátis":"Free trial",
 "Experimente por 7 dias":"Try it for 7 days",
-"Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso. Se gostar, escolha seu plano.":"Download it on your device and try it for free — no interruptions, no commitment. If you like it, pick your plan.",
+"Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso.":"Download it on your device and try it for free — no interruptions, no commitment.",
 "Baixar aplicativo":"Download the app",
-"Criar conta grátis":"Create free account",
 /* dispositivos */
 "Compatibilidade":"Compatibility",
 "Funciona nos seus aparelhos":"Works on your devices",
@@ -1706,19 +1089,14 @@ const DICT={
 "O que é a TVCinema?":"What is TVCinema?",
 "A TVCinema é uma plataforma dedicada à TV ao vivo, esportes, filmes e séries. Acompanhe seus jogos e programas preferidos com qualidade e estabilidade, na TV, no TV Box, no TV Stick ou no celular.":"TVCinema is a platform dedicated to live TV, sports, movies and series. Follow your favourite matches and shows with quality and stability — on TV, TV Box, TV Stick or mobile.",
 "Em quais dispositivos funciona?":"Which devices does it work on?",
-"Android TV, TV Box, TV Stick e celulares Android. O aplicativo é leve e a configuração leva poucos minutos — basta fazer o download, entrar com sua conta e começar a assistir.":"Android TV, TV Box, TV Stick and Android phones. The app is lightweight and setup takes only a few minutes — just download it, sign in and start watching.",
+"Android TV, TV Box, TV Stick e celulares Android. O aplicativo é leve e a configuração leva poucos minutos — basta fazer o download e começar a assistir.":"Android TV, TV Box, TV Stick and Android phones. The app is lightweight and setup takes only a few minutes — just download it and start watching.",
 "Existe período de teste grátis?":"Is there a free trial?",
-"Sim! Todos os novos cadastros têm 7 dias de teste gratuito, sem interrupções e sem compromisso. Você só assina se gostar da experiência.":"Yes! Every new sign-up gets a 7-day free trial, with no interruptions and no commitment. You only subscribe if you like the experience.",
+"Sim! Baixe o aplicativo e experimente 7 dias de teste gratuito, sem interrupções e sem compromisso.":"Yes! Download the app and enjoy a 7-day free trial, with no interruptions and no commitment.",
 "Qual a qualidade da transmissão?":"What is the streaming quality?",
-"Transmitimos em HD e 4K HDR (nos planos elegíveis), com servidores otimizados para estabilidade mesmo em horários de pico, como finais de campeonato.":"We stream in HD and 4K HDR (on eligible plans), with servers optimised for stability even at peak times such as cup finals.",
-"Quantas telas posso usar ao mesmo tempo?":"How many screens can I use at the same time?",
-"O plano Essencial inclui 1 tela simultânea; os planos Trimestral e Anual incluem 2 telas — perfeito para assistir o jogo na sala e o filme no quarto.":"The Essential plan includes 1 simultaneous screen; the Quarterly and Yearly plans include 2 — perfect for the match in the living room and a movie in the bedroom.",
-"Quais são as formas de pagamento?":"What payment methods are available?",
-"Aceitamos Pix, cartão de crédito e boleto. A ativação é imediata após a confirmação do pagamento, e o suporte acontece pelo Telegram, 7 dias por semana.":"We accept Pix, credit card and boleto. Activation is immediate after payment confirmation, and support is available on Telegram 7 days a week.",
+"Transmitimos em HD e 4K HDR, com servidores otimizados para estabilidade mesmo em horários de pico, como finais de campeonato.":"We stream in HD and 4K HDR, with servers optimised for stability even at peak times such as cup finals.",
+"Como falo com o suporte?":"How do I reach support?",
+"O suporte acontece pelo Telegram (@tvcinemabot), 7 dias por semana — incluindo ajuda com instalação e configuração nos seus aparelhos.":"Support is available on Telegram (@tvcinemabot), 7 days a week — including help with installation and setup on your devices.",
 /* cta final */
-"Assine a TVCinema e transforme sua sala em um estádio e em uma sala de cinema — hoje mesmo.":"Subscribe to TVCinema and turn your living room into a stadium and a movie theatre — today.",
-"Escolher meu plano":"Choose my plan",
-"Começar grátis":"Start free",
 /* footer */
 "O seu cinema dentro de casa. Plataforma dedicada aos canais de TV ao vivo, esportes, filmes e séries — com qualidade e estabilidade.":"Your cinema at home. A platform dedicated to live TV channels, sports, movies and series — with quality and stability.",
 "Navegação":"Navigation",
@@ -1729,16 +1107,7 @@ const DICT={
 "Contate-nos":"Contact us",
 "Perguntas frequentes":"FAQ",
 "© 2026 TVCinema — Todos os direitos reservados.":"© 2026 TVCinema — All rights reserved.",
-"Feito para quem vive o cinema e o futebol. 🔴⚽":"Made for those who live for cinema and football. 🔴⚽",
-/* modal */
-"Fechar":"Close",
-"Entrar na TVCinema":"Sign in to TVCinema",
-"Acesse sua conta para continuar assistindo.":"Access your account to keep watching.",
-"E-mail":"Email",
-"voce@email.com":"you@email.com",
-"Senha":"Password",
-"Ainda não tem conta?":"Don't have an account yet?",
-"Comece os 7 dias grátis":"Start your 7 free days"
+"Feito para quem vive o cinema e o futebol. 🔴⚽":"Made for those who live for cinema and football. 🔴⚽"
 };
 
 const HEAD_META={
@@ -1788,12 +1157,10 @@ function applyLang(lang){
     b.setAttribute('aria-pressed',on?'true':'false');
   });
   /* dynamic content */
-  syncPlans();
-  document.querySelectorAll('[data-count]').forEach(el=>{
+    document.querySelectorAll('[data-count]').forEach(el=>{
     el.textContent=(+el.dataset.count).toLocaleString(lang==='en'?'en-US':'pt-BR');
   });
   dots.forEach((d,k)=>d.setAttribute('aria-label',(lang==='en'?'Testimonial ':'Depoimento ')+(k+1)));
-  renderSummary();syncAuthUI();
   try{localStorage.setItem('tvcLang',lang);}catch(e){}
 }
 
@@ -1801,150 +1168,11 @@ document.querySelectorAll('.lang-switch button').forEach(b=>{
   b.addEventListener('click',()=>applyLang(b.dataset.lang));
 });
 
-/* ==========================================================
-   Auth + Checkout (demo)
-   ========================================================== */
-let authed=false;try{authed=localStorage.getItem('tvcAuth')==='1';}catch(e){}
-let pendingPlan=null,userName='';
-const CK=document.getElementById('checkout');
-/* 结账摘要：周期与价格全部来自当前 CYCLE，与卡片完全同源 */
-function ckPlanData(key){
-  const q=planQuote(key),en=LANG==='en',P=q.P,C=q.C;
-  return {
-    name:(PLAN_NAMES[key]||PLAN_NAMES.cin)[LANG],
-    sub:monthsLabel(C.months,LANG)+' · '+(en?P.screens.en:P.screens.pt)+' · '+P.quality+(P.kids?' + KIDS':''),
-    list:q.list,
-    total:q.total,
-    disc:C.disc,
-    note:billingNote(q,LANG)
-  };
-}
-let ckPlan='cin',ckCoupon=0;
-const fmt=v=>{
-  if(document.getElementById('ckCur').value==='USD')return 'US$ '+(v*0.19/100).toFixed(2);
-  return 'R$ '+(v/100).toFixed(2).replace('.',',');
-};
-function renderSummary(){
-  const P=ckPlanData(ckPlan);
-  document.getElementById('ckPlanName').textContent=P.name;
-  document.getElementById('ckPlanSub').textContent=P.sub;
-  document.getElementById('ckPrice').textContent=fmt(P.list);
-  const dr=document.getElementById('ckDiscRow');
-  dr.hidden=!P.disc;
-  if(P.disc){
-    document.getElementById('ckDiscPct').textContent='(-'+P.disc+'%)';
-    document.getElementById('ckDisc').textContent='-'+fmt(P.list-P.total);
-  }
-  const cr=document.getElementById('ckCoupRow');
-  cr.hidden=!ckCoupon;
-  let total=P.total;
-  if(ckCoupon){
-    const cv=Math.round(P.total*ckCoupon/100);
-    document.getElementById('ckCoupPct').textContent='(-'+ckCoupon+'%)';
-    document.getElementById('ckCoup').textContent='-'+fmt(cv);
-    total-=cv;
-  }
-  document.getElementById('ckTotal').textContent=fmt(total);
-  document.getElementById('ckNote').textContent=P.note;
-}
-function ckGo(step){
-  document.getElementById('ckStep1').classList.toggle('on',step===1);
-  document.getElementById('ckStep2').classList.toggle('on',step===2);
-  document.getElementById('ckDone').classList.toggle('on',step===3);
-  const l1=document.getElementById('ckLi1'),l2=document.getElementById('ckLi2');
-  l1.classList.toggle('on',step===1);l1.classList.toggle('done',step>1);
-  l2.classList.toggle('on',step===2);l2.classList.toggle('done',step===3);
-  CK.scrollTop=0;
-}
-function openCheckout(plan){
-  ckPlan=plan;ckCoupon=0;
-  document.getElementById('ckCode').value='';
-  const msg=document.getElementById('ckMsg');msg.textContent='';msg.className='ck-msg';
-  renderSummary();ckGo(1);
-  CK.classList.add('open');
-  document.body.style.overflow='hidden';
-  document.getElementById('ckClose').focus();
-}
-function closeCheckout(){
-  CK.classList.remove('open');
-  document.body.style.overflow='';
-  ckGo(1);
-}
-function syncAuthUI(){
-  document.querySelectorAll('[data-login]').forEach(b=>{
-    if(authed){b.textContent='✓ '+userName+(LANG==='en'?' · Log out':' · Sair');return;}
-    b.textContent=b.classList.contains('btn-sm')?(LANG==='en'?'Sign in':'Entrar'):(LANG==='en'?'Sign in to my account':'Entrar na minha conta');
-  });
-}
-/* plan CTAs */
-document.querySelectorAll('[data-checkout]').forEach(b=>b.addEventListener('click',()=>{
-  if(!authed){pendingPlan=b.dataset.checkout;openModal();return;}
-  openCheckout(b.dataset.checkout);
-}));
-/* steps & close */
-document.getElementById('ckToStep2').addEventListener('click',()=>ckGo(2));
-document.getElementById('ckBack').addEventListener('click',()=>ckGo(1));
-document.getElementById('ckClose').addEventListener('click',closeCheckout);
-CK.querySelectorAll('[data-ckclose]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();closeCheckout();}));
-/* payment method cards */
-document.querySelectorAll('.pm input').forEach(r=>r.addEventListener('change',()=>{
-  document.querySelectorAll('.pm').forEach(l=>l.classList.toggle('on',l.querySelector('input').checked));
-}));
-/* currency */
-document.getElementById('ckCur').addEventListener('change',renderSummary);
-/* coupon */
-document.getElementById('ckApply').addEventListener('click',()=>{
-  const code=document.getElementById('ckCode').value.trim().toUpperCase();
-  const msg=document.getElementById('ckMsg');
-  if(code==='TVCINEMA10'){ckCoupon=10;renderSummary();msg.textContent=LANG==='en'?'Coupon applied: -10%':'Cupom aplicado: -10%';msg.className='ck-msg ok';}
-  else{ckCoupon=0;renderSummary();msg.textContent=LANG==='en'?'Invalid coupon':'Cupom inválido';msg.className='ck-msg err';}
-});
-/* input masks */
-const onlyD=s=>s.replace(/\D/g,'');
-function maskCPF(d){d=d.slice(0,11);let o=d;
-  if(d.length>3)o=d.slice(0,3)+'.'+d.slice(3);
-  if(d.length>6)o=o.slice(0,7)+'.'+o.slice(7);
-  if(d.length>9)o=o.slice(0,11)+'-'+o.slice(11);
-  return o;}
-function maskCNPJ(d){d=d.slice(0,14);let o=d;
-  if(d.length>2)o=d.slice(0,2)+'.'+d.slice(2);
-  if(d.length>5)o=o.slice(0,6)+'.'+o.slice(6);
-  if(d.length>8)o=o.slice(0,10)+'/'+o.slice(10);
-  if(d.length>12)o=o.slice(0,15)+'-'+o.slice(15);
-  return o;}
-function syncIdMask(){
-  const el=document.getElementById('ckIdNum');
-  const cnpj=document.querySelector('input[name=idtype]:checked').value==='CNPJ';
-  const d=onlyD(el.value);
-  el.value=cnpj?maskCNPJ(d):maskCPF(d);
-  el.placeholder=cnpj?'xx.xxx.xxx/xxxx-xx':'xxx.xxx.xxx-xx';
-}
-document.getElementById('ckIdNum').addEventListener('input',syncIdMask);
-document.querySelectorAll('input[name=idtype]').forEach(r=>r.addEventListener('change',syncIdMask));
-document.getElementById('ckPhone').addEventListener('input',e=>{
-  const d=onlyD(e.target.value).slice(0,11);
-  if(d.length<=2){e.target.value=d;return;}
-  const rest=d.slice(2),a=rest.length>8?5:4;
-  e.target.value=rest.length<=a?'('+d.slice(0,2)+') '+rest:'('+d.slice(0,2)+') '+rest.slice(0,a)+'-'+rest.slice(a);
-});
-document.getElementById('ckZip').addEventListener('input',e=>{
-  const d=onlyD(e.target.value).slice(0,8);
-  e.target.value=d.length>5?d.slice(0,5)+'-'+d.slice(5):d;
-});
-/* submit → success */
-document.getElementById('ckForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  if(!e.target.checkValidity()){e.target.reportValidity();return;}
-  ckGo(3);
-});
-syncAuthUI();
-
 collectI18n();
 let savedLang='pt';
 try{savedLang=localStorage.getItem('tvcLang')||'pt';}catch(e){}
 if(/[?&]lang=en/.test(location.search))savedLang='en';
 if(savedLang==='en')applyLang('en');
-syncPlans();
 </script>
 </body>
 </html>
