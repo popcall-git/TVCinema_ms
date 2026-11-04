@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TVCinema — O cinema inteiro em um só lugar</title>
 <meta name="description" content="Canais ao vivo, futebol, filmes e séries em 4K. Assista quando quiser, de onde estiver. Teste grátis por 7 dias.">
+<meta property="og:title" content="TVCinema — O cinema inteiro em um só lugar">
+<meta property="og:description" content="Canais ao vivo, futebol, filmes e séries em 4K. Assista quando quiser, de onde estiver.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://popcall-git.github.io/TVCinema_ms/">
+<meta property="og:image" content="https://popcall-git.github.io/TVCinema_ms/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TVCinema — O cinema inteiro em um só lugar">
+<meta name="twitter:description" content="Canais ao vivo, futebol, filmes e séries em 4K.">
+<meta name="twitter:image" content="https://popcall-git.github.io/TVCinema_ms/assets/og-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -177,6 +188,9 @@ header.scrolled{
 }
 .hero .lead{color:var(--text-2);font-size:clamp(16px,1.6vw,18.5px);max-width:520px;margin-bottom:32px}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.hero-proof{display:flex;align-items:center;gap:9px;margin:-22px 0 22px;color:var(--text-2);font-size:13.5px}
+.hero-proof b{color:var(--ink);font-weight:800}
+.hero-proof .pf-stars{color:var(--amber);font-size:12.5px;letter-spacing:.14em}
 .hero-stats{display:flex;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.02);max-width:520px}
 .hero-stats .stat{flex:1;padding:16px 10px;text-align:center;border-right:1px solid var(--line)}
 .hero-stats .stat:last-child{border-right:none}
@@ -301,7 +315,17 @@ header.scrolled{
 }
 .tab:hover{color:var(--ink);border-color:var(--line-strong)}
 .tab.on{background:linear-gradient(135deg,var(--amber),#e89a1f);color:#2a1200;border-color:transparent;box-shadow:0 8px 24px -8px rgba(242,179,61,.5)}
-.poster-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.poster-scroll{
+  overflow:hidden;border-radius:var(--radius-sm);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.poster-track{display:flex;width:max-content;animation:ticker 60s linear infinite}
+.poster-scroll:hover .poster-track{animation-play-state:paused}
+@keyframes ticker{to{transform:translateX(-50%)}}
+.no-anim .poster-track{animation:none}
+@media (prefers-reduced-motion:reduce){.poster-track{animation:none}}
+.poster-track .poster{width:186px;flex:none;margin-right:16px}
 .poster{
   position:relative;border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:2/3;
   border:1px solid var(--line);cursor:pointer;
@@ -359,7 +383,8 @@ header.scrolled{
 }
 .banner h2{font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
 .banner p{color:var(--text-2);max-width:480px}
-.banner .btns{display:flex;gap:14px;flex-wrap:wrap;position:relative}
+.banner .btns{display:flex;gap:14px;flex-wrap:wrap;position:relative;align-items:center}
+.banner-note{color:var(--text-2);font-size:13.5px;letter-spacing:.01em}
 .banner>*{position:relative}
 
 /* ============ Dispositivos ============ */
@@ -393,7 +418,12 @@ header.scrolled{
   quotes:'“' '”';margin-bottom:24px;color:var(--ink);
 }
 .tst .who b{display:block;font-weight:800;font-size:15px}
-.tst .who span{font-size:13px;color:var(--text-3)}
+.tst .who span{font-size:13px;color:var(--text-3);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tst .dev{
+  font-style:normal;padding:2.5px 10px;border-radius:999px;flex:none;
+  font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--amber-2);
+  border:1px solid rgba(242,179,61,.45);background:rgba(242,179,61,.08);
+}
 .avatar{
   width:52px;height:52px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;
   font-weight:800;font-size:18px;color:#fff;
@@ -436,6 +466,7 @@ footer{border-top:1px solid var(--line);background:rgba(0,0,0,.28);padding:64px 
 .foot-col h4{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:18px}
 .foot-col a{display:block;padding:6px 0;color:var(--text-2);font-size:14px;transition:color .2s}
 .foot-col a:hover{color:var(--amber-2)}
+.foot-col .ch-item{display:block;padding:6px 0;color:var(--text-2);font-size:14px}
 .foot-bottom{
   border-top:1px solid var(--line);padding-top:24px;
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
@@ -461,7 +492,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
   .hero-grid{grid-template-columns:1fr;gap:70px}
   .hero{padding-top:140px}
   .feat-grid{grid-template-columns:repeat(2,1fr)}
-  .poster-grid{grid-template-columns:repeat(4,1fr)}
+  .poster-track .poster{width:150px;margin-right:12px}
   .dev-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
@@ -473,7 +504,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
   .lang-switch button{padding:5px 8px;font-size:11px}
   .nav-cta .btn-amber{padding:10px 16px;font-size:13.5px}
   .feat-grid{grid-template-columns:1fr}
-  .poster-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .poster-track .poster{width:128px;margin-right:10px}
   .dev-grid{grid-template-columns:1fr 1fr;gap:12px}
   .banner{padding:44px 26px}
   .tst{padding:34px 22px}
@@ -549,6 +580,10 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
+      </div>
+      <div class="hero-proof">
+        <span class="pf-stars" aria-hidden="true">★★★★★</span>
+        <span><b>4,8</b> no Telegram · <b>+50 mil</b> usuários ativos</span>
       </div>
       <div class="hero-stats" role="list">
         <div class="stat" role="listitem"><b><em data-count="1000">0</em>+</b><span>Canais</span></div>
@@ -655,31 +690,76 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
       <button class="tab" role="tab" aria-selected="false" data-tab="p3">Mais bem avaliados</button>
     </div>
     <div class="tab-panel on" id="p1" role="tabpanel">
-      <div class="poster-grid">
+      <div class="poster-scroll"><div class="poster-track">
         <div class="poster a1"><span class="q">4K</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 8,6 · Ficção</span></div></div>
         <div class="poster a2"><span class="q">4K</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,0 · Ação</span></div></div>
         <div class="poster a3"><span class="q">4K</span><div class="art"><img src="assets/posters/divertida-mente-2.jpg" alt="Divertida Mente 2" loading="lazy"></div><div class="meta"><b>Divertida Mente 2</b><span>★ 7,8 · Animação</span></div></div>
         <div class="poster a4"><span class="q">4K</span><div class="art"><img src="assets/posters/gladiador-2.jpg" alt="Gladiador II" loading="lazy"></div><div class="meta"><b>Gladiador II</b><span>★ 7,0 · Ação</span></div></div>
         <div class="poster a5"><span class="q">4K</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 8,8 · Drama</span></div></div>
-      </div>
+        <div class="poster a2"><span class="q">4K</span><div class="art"><img src="assets/posters/furiosa.jpg" alt="Furiosa: Uma Saga Mad Max" loading="lazy"></div><div class="meta"><b>Furiosa: Uma Saga Mad Max</b><span>★ 8,1 · Ação</span></div></div>
+        <div class="poster a3"><span class="q">4K</span><div class="art"><img src="assets/posters/kung-fu-panda-4.jpg" alt="Kung Fu Panda 4" loading="lazy"></div><div class="meta"><b>Kung Fu Panda 4</b><span>★ 7,3 · Animação</span></div></div>
+        <div class="poster a4"><span class="q">4K</span><div class="art"><img src="assets/posters/twisters.jpg" alt="Twisters" loading="lazy"></div><div class="meta"><b>Twisters</b><span>★ 7,2 · Ação</span></div></div>
+        <div class="poster a1"><span class="q">4K</span><div class="art"><img src="assets/posters/godzilla-x-kong.jpg" alt="Godzilla e Kong: O Novo Império" loading="lazy"></div><div class="meta"><b>Godzilla e Kong: O Novo Império</b><span>★ 7,2 · Ficção</span></div></div>
+        <div class="poster a7"><span class="q">4K</span><div class="art"><img src="assets/posters/bad-boys-ride-or-die.jpg" alt="Bad Boys: Até o Fim" loading="lazy"></div><div class="meta"><b>Bad Boys: Até o Fim</b><span>★ 7,1 · Comédia</span></div></div>
+        <div class="poster a1"><span class="q">4K</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 8,6 · Ficção</span></div></div>
+        <div class="poster a2"><span class="q">4K</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,0 · Ação</span></div></div>
+        <div class="poster a3"><span class="q">4K</span><div class="art"><img src="assets/posters/divertida-mente-2.jpg" alt="Divertida Mente 2" loading="lazy"></div><div class="meta"><b>Divertida Mente 2</b><span>★ 7,8 · Animação</span></div></div>
+        <div class="poster a4"><span class="q">4K</span><div class="art"><img src="assets/posters/gladiador-2.jpg" alt="Gladiador II" loading="lazy"></div><div class="meta"><b>Gladiador II</b><span>★ 7,0 · Ação</span></div></div>
+        <div class="poster a5"><span class="q">4K</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 8,8 · Drama</span></div></div>
+        <div class="poster a2"><span class="q">4K</span><div class="art"><img src="assets/posters/furiosa.jpg" alt="Furiosa: Uma Saga Mad Max" loading="lazy"></div><div class="meta"><b>Furiosa: Uma Saga Mad Max</b><span>★ 8,1 · Ação</span></div></div>
+        <div class="poster a3"><span class="q">4K</span><div class="art"><img src="assets/posters/kung-fu-panda-4.jpg" alt="Kung Fu Panda 4" loading="lazy"></div><div class="meta"><b>Kung Fu Panda 4</b><span>★ 7,3 · Animação</span></div></div>
+        <div class="poster a4"><span class="q">4K</span><div class="art"><img src="assets/posters/twisters.jpg" alt="Twisters" loading="lazy"></div><div class="meta"><b>Twisters</b><span>★ 7,2 · Ação</span></div></div>
+        <div class="poster a1"><span class="q">4K</span><div class="art"><img src="assets/posters/godzilla-x-kong.jpg" alt="Godzilla e Kong: O Novo Império" loading="lazy"></div><div class="meta"><b>Godzilla e Kong: O Novo Império</b><span>★ 7,2 · Ficção</span></div></div>
+        <div class="poster a7"><span class="q">4K</span><div class="art"><img src="assets/posters/bad-boys-ride-or-die.jpg" alt="Bad Boys: Até o Fim" loading="lazy"></div><div class="meta"><b>Bad Boys: Até o Fim</b><span>★ 7,1 · Comédia</span></div></div>
+      </div></div>
     </div>
     <div class="tab-panel" id="p2" role="tabpanel">
-      <div class="poster-grid">
+      <div class="poster-scroll"><div class="poster-track">
         <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,2 · Terror</span></div></div>
         <div class="poster a7"><span class="q">NEW</span><div class="art"><img src="assets/posters/wicked.jpg" alt="Wicked" loading="lazy"></div><div class="meta"><b>Wicked</b><span>★ 7,8 · Musical</span></div></div>
         <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/moana-2.jpg" alt="Moana 2" loading="lazy"></div><div class="meta"><b>Moana 2</b><span>★ 7,4 · Animação</span></div></div>
-        <div class="poster a9"><span class="q">NEW</span><div class="art"><img src="assets/posters/alien-romulus.jpg" alt="Alien: Romulus" loading="lazy"></div><div class="meta"><b>Alien: Romulus</b><span>★ 7,5 · Terror</span></div></div>
+        <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/alien-romulus.jpg" alt="Alien: Romulus" loading="lazy"></div><div class="meta"><b>Alien: Romulus</b><span>★ 7,5 · Terror</span></div></div>
         <div class="poster a10"><span class="q">4K</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 8,5 · Drama</span></div></div>
-      </div>
+        <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/mickey-17.jpg" alt="Mickey 17" loading="lazy"></div><div class="meta"><b>Mickey 17</b><span>★ 7,8 · Ficção</span></div></div>
+        <div class="poster a2"><span class="q">NEW</span><div class="art"><img src="assets/posters/thunderbolts.jpg" alt="Thunderbolts*" loading="lazy"></div><div class="meta"><b>Thunderbolts*</b><span>★ 7,4 · Ação</span></div></div>
+        <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/lilo-stitch.jpg" alt="Lilo &amp; Stitch" loading="lazy"></div><div class="meta"><b>Lilo &amp; Stitch</b><span>★ 7,2 · Animação</span></div></div>
+        <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/pecadores.jpg" alt="Pecadores" loading="lazy"></div><div class="meta"><b>Pecadores</b><span>★ 7,8 · Terror</span></div></div>
+        <div class="poster a1"><span class="q">NEW</span><div class="art"><img src="assets/posters/como-treinar-dragao.jpg" alt="Como Treinar o Seu Dragão" loading="lazy"></div><div class="meta"><b>Como Treinar o Seu Dragão</b><span>★ 8,1 · Aventura</span></div></div>
+        <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,2 · Terror</span></div></div>
+        <div class="poster a7"><span class="q">NEW</span><div class="art"><img src="assets/posters/wicked.jpg" alt="Wicked" loading="lazy"></div><div class="meta"><b>Wicked</b><span>★ 7,8 · Musical</span></div></div>
+        <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/moana-2.jpg" alt="Moana 2" loading="lazy"></div><div class="meta"><b>Moana 2</b><span>★ 7,4 · Animação</span></div></div>
+        <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/alien-romulus.jpg" alt="Alien: Romulus" loading="lazy"></div><div class="meta"><b>Alien: Romulus</b><span>★ 7,5 · Terror</span></div></div>
+        <div class="poster a10"><span class="q">4K</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 8,5 · Drama</span></div></div>
+        <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/mickey-17.jpg" alt="Mickey 17" loading="lazy"></div><div class="meta"><b>Mickey 17</b><span>★ 7,8 · Ficção</span></div></div>
+        <div class="poster a2"><span class="q">NEW</span><div class="art"><img src="assets/posters/thunderbolts.jpg" alt="Thunderbolts*" loading="lazy"></div><div class="meta"><b>Thunderbolts*</b><span>★ 7,4 · Ação</span></div></div>
+        <div class="poster a8"><span class="q">NEW</span><div class="art"><img src="assets/posters/lilo-stitch.jpg" alt="Lilo &amp; Stitch" loading="lazy"></div><div class="meta"><b>Lilo &amp; Stitch</b><span>★ 7,2 · Animação</span></div></div>
+        <div class="poster a6"><span class="q">NEW</span><div class="art"><img src="assets/posters/pecadores.jpg" alt="Pecadores" loading="lazy"></div><div class="meta"><b>Pecadores</b><span>★ 7,8 · Terror</span></div></div>
+        <div class="poster a1"><span class="q">NEW</span><div class="art"><img src="assets/posters/como-treinar-dragao.jpg" alt="Como Treinar o Seu Dragão" loading="lazy"></div><div class="meta"><b>Como Treinar o Seu Dragão</b><span>★ 8,1 · Aventura</span></div></div>
+      </div></div>
     </div>
     <div class="tab-panel" id="p3" role="tabpanel">
-      <div class="poster-grid">
-        <div class="poster a5"><span class="q">TOP 1</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 9,3 · Drama</span></div></div>
-        <div class="poster a1"><span class="q">TOP 2</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 9,1 · Ficção</span></div></div>
-        <div class="poster a10"><span class="q">TOP 3</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 9,0 · Drama</span></div></div>
-        <div class="poster a6"><span class="q">TOP 4</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,9 · Terror</span></div></div>
-        <div class="poster a2"><span class="q">TOP 5</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,7 · Ação</span></div></div>
-      </div>
+      <div class="poster-scroll"><div class="poster-track">
+        <div class="poster a5"><span class="q">TOP 1</span><div class="art"><img src="assets/posters/sonho-liberdade.jpg" alt="Um Sonho de Liberdade" loading="lazy"></div><div class="meta"><b>Um Sonho de Liberdade</b><span>★ 9,3 · Drama</span></div></div>
+        <div class="poster a1"><span class="q">TOP 2</span><div class="art"><img src="assets/posters/poderoso-chefao.jpg" alt="O Poderoso Chefão" loading="lazy"></div><div class="meta"><b>O Poderoso Chefão</b><span>★ 9,2 · Crime</span></div></div>
+        <div class="poster a5"><span class="q">TOP 3</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 9,1 · Drama</span></div></div>
+        <div class="poster a3"><span class="q">TOP 4</span><div class="art"><img src="assets/posters/cavaleiro-trevas.jpg" alt="Batman: O Cavaleiro das Trevas" loading="lazy"></div><div class="meta"><b>Batman: O Cavaleiro das Trevas</b><span>★ 9,0 · Ação</span></div></div>
+        <div class="poster a1"><span class="q">TOP 5</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 8,9 · Ficção</span></div></div>
+        <div class="poster a2"><span class="q">TOP 6</span><div class="art"><img src="assets/posters/pulp-fiction.jpg" alt="Pulp Fiction: Tempo de Violência" loading="lazy"></div><div class="meta"><b>Pulp Fiction: Tempo de Violência</b><span>★ 8,9 · Crime</span></div></div>
+        <div class="poster a1"><span class="q">TOP 7</span><div class="art"><img src="assets/posters/a-origem.jpg" alt="A Origem" loading="lazy"></div><div class="meta"><b>A Origem</b><span>★ 8,8 · Ficção</span></div></div>
+        <div class="poster a10"><span class="q">TOP 8</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 8,5 · Drama</span></div></div>
+        <div class="poster a6"><span class="q">TOP 9</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,2 · Terror</span></div></div>
+        <div class="poster a2"><span class="q">TOP 10</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,0 · Ação</span></div></div>
+        <div class="poster a5"><span class="q">TOP 1</span><div class="art"><img src="assets/posters/sonho-liberdade.jpg" alt="Um Sonho de Liberdade" loading="lazy"></div><div class="meta"><b>Um Sonho de Liberdade</b><span>★ 9,3 · Drama</span></div></div>
+        <div class="poster a1"><span class="q">TOP 2</span><div class="art"><img src="assets/posters/poderoso-chefao.jpg" alt="O Poderoso Chefão" loading="lazy"></div><div class="meta"><b>O Poderoso Chefão</b><span>★ 9,2 · Crime</span></div></div>
+        <div class="poster a5"><span class="q">TOP 3</span><div class="art"><img src="assets/posters/oppenheimer.jpg" alt="Oppenheimer" loading="lazy"></div><div class="meta"><b>Oppenheimer</b><span>★ 9,1 · Drama</span></div></div>
+        <div class="poster a3"><span class="q">TOP 4</span><div class="art"><img src="assets/posters/cavaleiro-trevas.jpg" alt="Batman: O Cavaleiro das Trevas" loading="lazy"></div><div class="meta"><b>Batman: O Cavaleiro das Trevas</b><span>★ 9,0 · Ação</span></div></div>
+        <div class="poster a1"><span class="q">TOP 5</span><div class="art"><img src="assets/posters/duna-2.jpg" alt="Duna: Parte Dois" loading="lazy"></div><div class="meta"><b>Duna: Parte Dois</b><span>★ 8,9 · Ficção</span></div></div>
+        <div class="poster a2"><span class="q">TOP 6</span><div class="art"><img src="assets/posters/pulp-fiction.jpg" alt="Pulp Fiction: Tempo de Violência" loading="lazy"></div><div class="meta"><b>Pulp Fiction: Tempo de Violência</b><span>★ 8,9 · Crime</span></div></div>
+        <div class="poster a1"><span class="q">TOP 7</span><div class="art"><img src="assets/posters/a-origem.jpg" alt="A Origem" loading="lazy"></div><div class="meta"><b>A Origem</b><span>★ 8,8 · Ficção</span></div></div>
+        <div class="poster a10"><span class="q">TOP 8</span><div class="art"><img src="assets/posters/ainda-estou-aqui.jpg" alt="Ainda Estou Aqui" loading="lazy"></div><div class="meta"><b>Ainda Estou Aqui</b><span>★ 8,5 · Drama</span></div></div>
+        <div class="poster a6"><span class="q">TOP 9</span><div class="art"><img src="assets/posters/a-substancia.jpg" alt="A Substância" loading="lazy"></div><div class="meta"><b>A Substância</b><span>★ 8,2 · Terror</span></div></div>
+        <div class="poster a2"><span class="q">TOP 10</span><div class="art"><img src="assets/posters/deadpool-wolverine.jpg" alt="Deadpool e Wolverine" loading="lazy"></div><div class="meta"><b>Deadpool &amp; Wolverine</b><span>★ 8,0 · Ação</span></div></div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -695,6 +775,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
       </div>
       <div class="btns">
         <a class="btn btn-amber" href="#dispositivos">Baixar aplicativo</a>
+        <span class="banner-note"><span>✓ Sem cartão de crédito</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span>✓ Ativação imediata</span></span>
       </div>
     </div>
   </div>
@@ -751,19 +832,19 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
             <div class="avatar">C</div>
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
             <q>A TVCinema virou minha primeira opção para assistir aos jogos e aos canais ao vivo que mais gosto. A transmissão é estável e funciona muito bem no dia a dia.</q>
-            <div class="who"><b>Carlos Alberto</b><span>Cliente satisfeito da TVCinema</span></div>
+            <div class="who"><b>Carlos Alberto</b><span><i class="dev">TV Box</i>Cliente satisfeito da TVCinema</span></div>
           </div>
           <div class="tst">
             <div class="avatar">J</div>
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
             <q>Desde que comecei a usar, ficou muito mais fácil acompanhar partidas e filmes sem complicação. A experiência é simples, fluida e a imagem é excelente.</q>
-            <div class="who"><b>José da Silva</b><span>Apaixonado por futebol e cinema</span></div>
+            <div class="who"><b>José da Silva</b><span><i class="dev">Celular</i>Apaixonado por futebol e cinema</span></div>
           </div>
           <div class="tst">
             <div class="avatar">H</div>
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
             <q>Gosto bastante da variedade de canais e da estabilidade. Consigo assistir ao que quero com qualidade 4K e sem interrupções desnecessárias.</q>
-            <div class="who"><b>Henrique Amaral</b><span>Aproveitando melhor o conteúdo da TVCinema</span></div>
+            <div class="who"><b>Henrique Amaral</b><span><i class="dev">Smart TV</i>Aproveitando melhor o conteúdo da TVCinema</span></div>
           </div>
         </div>
       </div>
@@ -854,11 +935,13 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <a href="#dispositivos">Download</a>
       </div>
       <div class="foot-col">
-        <h4>Conteúdo</h4>
-        <a href="#catalogo">Filmes</a>
-        <a href="#catalogo">Séries</a>
-        <a href="#recursos">Esportes ao vivo</a>
-        <a href="#recursos">KIDS</a>
+        <h4>Canais &amp; Ligas</h4>
+        <span class="ch-item">Globo</span>
+        <span class="ch-item">SBT · Band · Record</span>
+        <span class="ch-item">ESPN · Premiere</span>
+        <span class="ch-item">Premier League</span>
+        <span class="ch-item">Champions League</span>
+        <span class="ch-item">La Liga · Brasileirão</span>
       </div>
       <div class="foot-col">
         <h4>Contate-nos</h4>
@@ -988,6 +1071,10 @@ const DICT={
 /* hero */
 /* hero */
 "Canais, filmes e jogos ao vivo":"Live channels, movies and sports",
+"4,8":"4.8",
+"no Telegram · ":"on Telegram · ",
+"+50 mil":"+50k",
+"usuários ativos":"active users",
 "O cinema inteiro":"All the cinema",
 "em":"in",
 "um só lugar":"one place",
@@ -1028,6 +1115,16 @@ const DICT={
 "Gladiador II":"Gladiator II",
 "A Substância":"The Substance",
 "Ainda Estou Aqui":"I'm Still Here",
+"Furiosa: Uma Saga Mad Max":"Furiosa: A Mad Max Saga",
+"Godzilla e Kong: O Novo Império":"Godzilla x Kong: The New Empire",
+"Bad Boys: Até o Fim":"Bad Boys: Ride or Die",
+"Como Treinar o Seu Dragão":"How to Train Your Dragon",
+"Pecadores":"Sinners",
+"Um Sonho de Liberdade":"The Shawshank Redemption",
+"O Poderoso Chefão":"The Godfather",
+"Batman: O Cavaleiro das Trevas":"The Dark Knight",
+"A Origem":"Inception",
+"Pulp Fiction: Tempo de Violência":"Pulp Fiction",
 "★ 8,6 · Ficção":"★ 8.6 · Sci-Fi",
 "★ 8,0 · Ação":"★ 8.0 · Action",
 "★ 7,8 · Animação":"★ 7.8 · Animation",
@@ -1043,6 +1140,21 @@ const DICT={
 "★ 9,0 · Drama":"★ 9.0 · Drama",
 "★ 8,9 · Terror":"★ 8.9 · Horror",
 "★ 8,7 · Ação":"★ 8.7 · Action",
+"★ 8,1 · Ação":"★ 8.1 · Action",
+"★ 7,3 · Animação":"★ 7.3 · Animation",
+"★ 7,2 · Ação":"★ 7.2 · Action",
+"★ 7,2 · Ficção":"★ 7.2 · Sci-Fi",
+"★ 7,1 · Comédia":"★ 7.1 · Comedy",
+"★ 7,8 · Ficção":"★ 7.8 · Sci-Fi",
+"★ 7,4 · Ação":"★ 7.4 · Action",
+"★ 7,2 · Animação":"★ 7.2 · Animation",
+"★ 8,1 · Aventura":"★ 8.1 · Adventure",
+"★ 9,2 · Crime":"★ 9.2 · Crime",
+"★ 9,1 · Drama":"★ 9.1 · Drama",
+"★ 9,0 · Ação":"★ 9.0 · Action",
+"★ 8,9 · Ficção":"★ 8.9 · Sci-Fi",
+"★ 8,9 · Crime":"★ 8.9 · Crime",
+"★ 8,8 · Ficção":"★ 8.8 · Sci-Fi",
 "Ação & Aventura":"Action & Adventure",
 "1.240 títulos":"1,240 titles",
 "980 títulos":"980 titles",
@@ -1063,6 +1175,9 @@ const DICT={
 "Experimente por 7 dias":"Try it for 7 days",
 "Baixe no seu dispositivo e teste gratuitamente, sem interrupções e sem compromisso.":"Download it on your device and try it for free — no interruptions, no commitment.",
 "Baixar aplicativo":"Download the app",
+"✓ Sem cartão de crédito":"✓ No credit card required",
+"✓ Ativação imediata":"✓ Instant activation",
+"Celular":"Phone",
 /* dispositivos */
 "Compatibilidade":"Compatibility",
 "Funciona nos seus aparelhos":"Works on your devices",
@@ -1100,10 +1215,7 @@ const DICT={
 /* footer */
 "O seu cinema dentro de casa. Plataforma dedicada aos canais de TV ao vivo, esportes, filmes e séries — com qualidade e estabilidade.":"Your cinema at home. A platform dedicated to live TV channels, sports, movies and series — with quality and stability.",
 "Navegação":"Navigation",
-"Conteúdo":"Content",
-"Filmes":"Movies",
-"Séries":"Series",
-"Esportes ao vivo":"Live sports",
+"Canais & Ligas":"Channels & Leagues",
 "Contate-nos":"Contact us",
 "Perguntas frequentes":"FAQ",
 "© 2026 TVCinema — Todos os direitos reservados.":"© 2026 TVCinema — All rights reserved.",
