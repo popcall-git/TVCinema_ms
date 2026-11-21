@@ -438,12 +438,28 @@ header.scrolled{
 
 /* ============ GUIA ============ */
 .guide-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;margin-top:10px}
-.guide-frame{
-  border-radius:18px;background:linear-gradient(180deg,#2c0509,#1b0304);
-  border:1px solid rgba(255,190,160,.16);padding:10px;
-  box-shadow:0 40px 90px -30px rgba(0,0,0,.7);
+.guide-show{min-width:0}
+.guide-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.g-tab{
+  border:1.6px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;
+  background:rgba(255,255,255,.03);color:var(--text-3);
+  font-weight:700;font-size:13px;letter-spacing:.04em;transition:.25s var(--ease);
 }
-.guide-frame img{display:block;width:100%;height:auto;border-radius:10px}
+.g-tab:hover{color:var(--text-1);border-color:rgba(242,179,61,.45)}
+.g-tab.on{
+  color:var(--amber);border-color:var(--amber);background:rgba(242,179,61,.08);
+}
+.guide-frame{
+  border-radius:18px;background:#0c0a10;
+  border:1px solid rgba(255,190,160,.16);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.7);
+  position:relative;aspect-ratio:16/9;overflow:hidden;
+}
+.guide-frame .g-view{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  opacity:0;transition:opacity .7s ease;
+}
+.guide-frame .g-view.on{opacity:1}
 .guide-list{display:flex;flex-direction:column;gap:26px;margin:0;padding:0;list-style:none}
 .guide-list li{display:flex;gap:16px;align-items:flex-start}
 .guide-ic{
@@ -705,8 +721,19 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
       <h2>Nunca perca o que importa</h2>
     </div>
     <div class="guide-grid reveal">
-      <div class="guide-frame">
-        <img src="assets/epg-guide.jpg" alt="Guia de programação da TVCinema com lista de canais, grade de programas por dia e lembretes" loading="lazy">
+      <div class="guide-show">
+        <div class="guide-tabs" role="tablist" aria-label="Telas da interface TVCinema">
+          <button class="g-tab on" role="tab" aria-selected="true">Guia</button>
+          <button class="g-tab" role="tab" aria-selected="false">Destaques</button>
+          <button class="g-tab" role="tab" aria-selected="false">Filmes</button>
+          <button class="g-tab" role="tab" aria-selected="false">Séries</button>
+        </div>
+        <div class="guide-frame">
+          <img class="g-view on" src="assets/epg-guide.jpg" alt="Guia de programação da TVCinema com lista de canais, grade de programas por dia e lembretes" loading="lazy">
+          <img class="g-view" src="assets/hero-featured.jpg" alt="Tela Destaques da TVCinema com foco em Masters of the Universe" loading="lazy">
+          <img class="g-view" src="assets/hero-movie.jpg" alt="Tela Filmes da TVCinema com categorias Top Popular, Novidades e Top Avaliados" loading="lazy">
+          <img class="g-view" src="assets/hero-series.jpg" alt="Tela Séries da TVCinema com grade de séries populares" loading="lazy">
+        </div>
       </div>
       <ul class="guide-list">
         <li>
@@ -1159,6 +1186,16 @@ function go(i){
 function restart(){clearInterval(timer);timer=setInterval(()=>go(idx+1),5200);}
 restart();
 
+/* ---------- Guide gallery tabs ---------- */
+const gTabs=[...document.querySelectorAll('.g-tab')];
+if(gTabs.length){
+  const gViews=[...document.querySelectorAll('.g-view')];
+  gTabs.forEach((t,k)=>t.addEventListener('click',()=>{
+    gTabs.forEach((x,i)=>{x.classList.toggle('on',i===k);x.setAttribute('aria-selected',i===k?'true':'false');});
+    gViews.forEach((v,i)=>v.classList.toggle('on',i===k));
+  }));
+}
+
 /* ---------- FAQ ---------- */
 document.querySelectorAll('.faq').forEach(f=>{
   const q=f.querySelector('.faq-q'),a=f.querySelector('.faq-a');
@@ -1324,6 +1361,10 @@ const DICT={
 "Grade completa de programas por data, com horários sempre atualizados.":"Full programme grid by date, with always up-to-date times.",
 "Lembretes de programas":"Programme reminders",
 "Agende um aviso e receba alerta antes do seu jogo ou programa começar.":"Set a reminder and get alerted before your match or show starts.",
+"Guia":"Guide",
+"Destaques":"Featured",
+"Filmes":"Movies",
+"Séries":"Series",
 "Dúvidas frequentes":"FAQ",
 "Perguntas & respostas":"Questions & answers",
 "O que é a TVCinema?":"What is TVCinema?",
