@@ -436,6 +436,24 @@ header.scrolled{
 .dot-b{width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,.2);transition:.3s var(--ease)}
 .dot-b.on{width:26px;background:var(--amber)}
 
+/* ============ GUIA ============ */
+.guide-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;margin-top:10px}
+.guide-frame{
+  border-radius:18px;background:linear-gradient(180deg,#2c0509,#1b0304);
+  border:1px solid rgba(255,190,160,.16);padding:10px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.7);
+}
+.guide-frame img{display:block;width:100%;height:auto;border-radius:10px}
+.guide-list{display:flex;flex-direction:column;gap:26px;margin:0;padding:0;list-style:none}
+.guide-list li{display:flex;gap:16px;align-items:flex-start}
+.guide-ic{
+  flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+  background:rgba(242,179,61,.08);border:1px solid rgba(242,179,61,.28);
+}
+.guide-list b{display:block;font-size:16.5px;margin-bottom:5px}
+.guide-list p{color:var(--text-2);font-size:14.5px;margin:0}
+@media (max-width:900px){.guide-grid{grid-template-columns:1fr;gap:36px}}
+
 /* ============ FAQ ============ */
 .faq-list{max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:12px}
 .faq{
@@ -663,6 +681,44 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <h3>Destaques &amp; lançamentos</h3>
         <p>Coleções curadas de top popular, novos lançamentos e os títulos mais bem avaliados, sempre atualizados.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUIA DE PROGRAMAÇÃO ================= -->
+<section id="guia" style="padding-top:40px">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Guia de programação</span>
+      <h2>Nunca perca o que importa</h2>
+    </div>
+    <div class="guide-grid reveal">
+      <div class="guide-frame">
+        <img src="assets/epg-guide.jpg" alt="Guia de programação da TVCinema com lista de canais, grade de programas por dia e lembretes" loading="lazy">
+      </div>
+      <ul class="guide-list">
+        <li>
+          <span class="guide-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="#f2b33d" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+          <div>
+            <b>Canais organizados</b>
+            <p>Todos os canais com logotipo, favoritos e acesso rápido — de TV aberta a esportes e notícias.</p>
+          </div>
+        </li>
+        <li>
+          <span class="guide-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="#f2b33d" stroke-width="2"/><path d="M4 10h16M9 3v4M15 3v4" stroke="#f2b33d" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <div>
+            <b>Programação dia a dia</b>
+            <p>Grade completa de programas por data, com horários sempre atualizados.</p>
+          </div>
+        </li>
+        <li>
+          <span class="guide-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6" stroke="#f2b33d" stroke-width="2" stroke-linejoin="round"/><path d="M10.3 19a2 2 0 0 0 3.4 0" stroke="#f2b33d" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <div>
+            <b>Lembretes de programas</b>
+            <p>Agende um aviso e receba alerta antes do seu jogo ou programa começar.</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1244,6 +1300,14 @@ const DICT={
 "Aproveitando melhor o conteúdo da TVCinema":"Getting more out of TVCinema",
 "5 de 5 estrelas":"5 out of 5 stars",
 /* faq */
+"Guia de programação":"Programme guide",
+"Nunca perca o que importa":"Never miss what matters",
+"Canais organizados":"Organised channels",
+"Todos os canais com logotipo, favoritos e acesso rápido — de TV aberta a esportes e notícias.":"All channels with logos, favourites and quick access — from free-to-air TV to sports and news.",
+"Programação dia a dia":"Day-by-day schedule",
+"Grade completa de programas por data, com horários sempre atualizados.":"Full programme grid by date, with always up-to-date times.",
+"Lembretes de programas":"Programme reminders",
+"Agende um aviso e receba alerta antes do seu jogo ou programa começar.":"Set a reminder and get alerted before your match or show starts.",
 "Dúvidas frequentes":"FAQ",
 "Perguntas & respostas":"Questions & answers",
 "O que é a TVCinema?":"What is TVCinema?",
