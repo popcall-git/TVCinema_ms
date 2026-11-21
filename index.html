@@ -430,10 +430,10 @@ header.scrolled{
   border:1px solid rgba(242,179,61,.45);background:rgba(242,179,61,.08);
 }
 .avatar{
-  width:52px;height:52px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;
-  font-weight:800;font-size:18px;color:#fff;
-  background:linear-gradient(135deg,#e33135,#6e0f13);
+  width:52px;height:52px;border-radius:50%;margin:0 auto 16px;display:block;
+  object-fit:cover;
   border:2px solid rgba(242,179,61,.5);
+  box-shadow:0 0 0 3px rgba(227,49,53,.25);
 }
 .dots{display:flex;gap:9px;justify-content:center;margin-top:26px}
 .dot-b{width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,.2);transition:.3s var(--ease)}
@@ -983,19 +983,19 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
       <div class="tst-track">
         <div class="tst-inner" id="tstInner">
           <div class="tst">
-            <div class="avatar">C</div>
+            <img class="avatar" src="assets/avatar-carlos.jpg" alt="Foto de Carlos Alberto" loading="lazy" width="52" height="52">
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
             <q>A TVCinema virou minha primeira opção para assistir aos jogos e aos canais ao vivo que mais gosto. A transmissão é estável e funciona muito bem no dia a dia.</q>
             <div class="who"><b>Carlos Alberto</b><span><i class="dev">TV Box</i>Cliente satisfeito da TVCinema</span></div>
           </div>
           <div class="tst">
-            <div class="avatar">J</div>
+            <img class="avatar" src="assets/avatar-jose.jpg" alt="Foto de José da Silva" loading="lazy" width="52" height="52">
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
             <q>Desde que comecei a usar, ficou muito mais fácil acompanhar partidas e filmes sem complicação. A experiência é simples, fluida e a imagem é excelente.</q>
             <div class="who"><b>José da Silva</b><span><i class="dev">Celular</i>Apaixonado por futebol e cinema</span></div>
           </div>
           <div class="tst">
-            <div class="avatar">H</div>
+            <img class="avatar" src="assets/avatar-henrique.jpg" alt="Foto de Henrique Amaral" loading="lazy" width="52" height="52">
             <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
             <q>Gosto bastante da variedade de canais e da estabilidade. Consigo assistir ao que quero com qualidade 4K e sem interrupções desnecessárias.</q>
             <div class="who"><b>Henrique Amaral</b><span><i class="dev">Smart TV</i>Aproveitando melhor o conteúdo da TVCinema</span></div>
