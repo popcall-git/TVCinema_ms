@@ -211,21 +211,6 @@ header.scrolled{
 }
 .tv:hover{transform:rotateY(-3deg) rotateX(1deg)}
 .tv-screen{border-radius:10px;overflow:hidden;background:linear-gradient(160deg,#40090c,#240406);position:relative}
-.hero-carousel{aspect-ratio:16/9}
-.hero-carousel .hc{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity .9s ease;
-}
-.hero-carousel .hc.on{opacity:1}
-.hc-dots{
-  position:absolute;left:0;right:0;bottom:12px;z-index:3;
-  display:flex;justify-content:center;gap:8px;
-}
-.hc-dot{
-  width:8px;height:8px;border-radius:999px;border:0;padding:0;cursor:pointer;
-  background:rgba(255,255,255,.35);transition:.3s var(--ease);
-}
-.hc-dot.on{background:var(--amber);width:22px}
 .tv-topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(0,0,0,.25)}
 .tv-topbar .b{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px}
 .tv-topbar .time{font-weight:700;font-size:13px;color:var(--text-2)}
@@ -650,18 +635,9 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <span class="fc-t">Qualidade</span>
         <span class="fc-v"><i></i>4K HDR estável</span>
       </div>
-      <div class="tv" role="img" aria-label="Prévia real da interface TVCinema — partidas ao vivo, destaques, filmes e séries">
-        <div class="tv-screen hero-carousel" id="heroCarousel">
-          <img class="hc on" src="assets/hero-app.jpg" alt="Lista de partidas de futebol de hoje na TVCinema" loading="eager">
-          <img class="hc" src="assets/hero-featured.jpg" alt="Tela Destaques da TVCinema com foco em Masters of the Universe" loading="lazy">
-          <img class="hc" src="assets/hero-movie.jpg" alt="Tela Filmes da TVCinema com categorias Top Popular, Novidades e Top Avaliados" loading="lazy">
-          <img class="hc" src="assets/hero-series.jpg" alt="Tela Séries da TVCinema com grade de séries populares" loading="lazy">
-          <div class="hc-dots">
-            <button class="hc-dot on" aria-label="Ver partidas ao vivo"></button>
-            <button class="hc-dot" aria-label="Ver destaques"></button>
-            <button class="hc-dot" aria-label="Ver filmes"></button>
-            <button class="hc-dot" aria-label="Ver séries"></button>
-          </div>
+      <div class="tv" role="img" aria-label="Prévia real da interface TVCinema — lista de partidas de futebol de hoje">
+        <div class="tv-screen">
+          <img src="assets/hero-app.jpg" alt="Lista de partidas de futebol de hoje na TVCinema" loading="eager" style="display:block;width:100%;height:auto">
         </div>
         <div class="tv-stand"></div>
       </div>
@@ -1112,29 +1088,6 @@ const header=document.getElementById('header');
 const onScroll=()=>header.classList.toggle('scrolled',window.scrollY>24);
 window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-/* ---------- Hero carousel ---------- */
-const hcBox=document.getElementById('heroCarousel');
-if(hcBox){
-  const hcImgs=[...hcBox.querySelectorAll('.hc')];
-  const hcDots=[...hcBox.querySelectorAll('.hc-dot')];
-  let hcIdx=0,hcTimer=null;
-  const hcGo=i=>{
-    hcIdx=(i+hcImgs.length)%hcImgs.length;
-    hcImgs.forEach((im,k)=>im.classList.toggle('on',k===hcIdx));
-    hcDots.forEach((d,k)=>d.classList.toggle('on',k===hcIdx));
-  };
-  const hcRestart=()=>{
-    clearInterval(hcTimer);
-    const animOk=!document.documentElement.classList.contains('no-anim')
-      &&!matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(animOk)hcTimer=setInterval(()=>hcGo(hcIdx+1),4200);
-  };
-  hcDots.forEach((d,k)=>d.addEventListener('click',()=>{hcGo(k);hcRestart();}));
-  hcBox.addEventListener('mouseenter',()=>clearInterval(hcTimer));
-  hcBox.addEventListener('mouseleave',hcRestart);
-  hcRestart();
-}
-
 /* ---------- Mobile menu ---------- */
 const ham=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
 ham.addEventListener('click',()=>{
@@ -1253,7 +1206,7 @@ const DICT={
 "18 partidas":"18 matches",
 "4K HDR estável":"Stable 4K HDR",
 "hoje":"today",
-"Prévia real da interface TVCinema — partidas ao vivo, destaques, filmes e séries":"Real preview of the TVCinema interface — live matches, featured, movies and series",
+"Prévia real da interface TVCinema — lista de partidas de futebol de hoje":"Real preview of the TVCinema interface — today's football match list",
 /* recursos */
 "Tudo o que você precisa em um só lugar":"Everything you need, in one place",
 "Uma plataforma completa dedicada à TV ao vivo, esportes, filmes e séries — com qualidade, estabilidade e simplicidade.":"A complete platform for live TV, sports, movies and series — with quality, stability and simplicity.",
