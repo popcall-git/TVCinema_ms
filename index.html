@@ -107,6 +107,11 @@ p{text-wrap:pretty}
   border:1px solid var(--line-strong);color:var(--ink);background:rgba(255,255,255,.03);
 }
 .btn-ghost:hover{background:rgba(255,255,255,.07);transform:translateY(-2px)}
+.dev .btn-ghost:hover,.dev .btn-ghost:active{
+  background:linear-gradient(135deg,var(--amber) 0%,#e89a1f 100%);
+  color:#2a1200;border-color:transparent;
+  box-shadow:0 10px 30px -8px rgba(242,179,61,.45);
+}
 .btn-sm{padding:10px 20px;font-size:14px}
 
 /* ============ Header ============ */
@@ -590,7 +595,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
       <a href="#inicio" class="active">Início</a>
       <a href="#recursos">Recursos</a>
       <a href="#catalogo">Catálogo</a>
-      <a href="#dispositivos">Download</a>
+      <a href="#dispositivos">Baixar</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta">
@@ -609,7 +614,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
   <a href="#inicio">Início</a>
   <a href="#recursos">Recursos</a>
   <a href="#catalogo">Catálogo</a>
-  <a href="#dispositivos">Download</a>
+  <a href="#dispositivos">Baixar</a>
   <a href="#faq">FAQ</a>
   <div class="lang-switch" role="group" aria-label="Idioma / Language" style="margin-top:16px">
     <button type="button" data-lang="pt" class="on" aria-pressed="true">PT</button>
@@ -977,7 +982,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
 </svg></div>
         <h3>Televisão</h3>
         <p>Assista diretamente na sua TV com Android TV.</p>
-        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.stb.1.0.01.202611152352.apk" download>Download</a>
+        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.stb.1.0.01.202611152352.apk" download>Baixar</a>
       </article>
       <article class="dev reveal d1">
         <div class="dev-ic"><svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -1001,7 +1006,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
 </svg></div>
         <h3>TV Box</h3>
         <p>Compatível com TV Box Android de diversos modelos.</p>
-        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.stb.1.0.01.202611152352.apk" download>Download</a>
+        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.stb.1.0.01.202611152352.apk" download>Baixar</a>
       </article>
       <article class="dev reveal d2">
         <div class="dev-ic"><svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -1022,7 +1027,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
 </svg></div>
         <h3>TV Stick</h3>
         <p>Use no seu TV Stick e leve a TVCinema para qualquer lugar.</p>
-        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.stb.1.0.01.202611152352.apk" download>Download</a>
+        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.stb.1.0.01.202611152352.apk" download>Baixar</a>
       </article>
       <article class="dev reveal d3">
         <div class="dev-ic"><svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -1045,7 +1050,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
 </svg></div>
         <h3>Celular</h3>
         <p>Baixe o aplicativo da TVCinema no seu celular Android.</p>
-        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.mobile.1.0.01.202611152352.apk" download>Download</a>
+        <a class="btn btn-ghost btn-sm" href="https://oss.tvcinema.store/apk/TVCinema.code.mobile.1.0.01.202611152352.apk" download>Baixar</a>
       </article>
     </div>
   </div>
@@ -1203,7 +1208,7 @@ html.no-anim .reveal,html:not(.js) .reveal{opacity:1;transform:none}
         <a href="#inicio">Início</a>
         <a href="#recursos">Recursos</a>
         <a href="#catalogo">Catálogo</a>
-        <a href="#dispositivos">Download</a>
+        <a href="#dispositivos">Baixar</a>
       </div>
       <div class="foot-col">
         <h4>Canais &amp; Ligas</h4>
@@ -1352,7 +1357,7 @@ const DICT={
 "Início":"Home",
 "Recursos":"Features",
 "Catálogo":"Catalog",
-"Download":"Download",
+"Baixar":"Download",
 /* hero */
 /* hero */
 "Canais, filmes e jogos ao vivo":"Live channels, movies and sports",
